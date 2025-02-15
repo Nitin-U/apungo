@@ -32,29 +32,49 @@ Before you begin, ensure you have the following installed on your machine:
 ## Installation Steps
 ### 1. Clone the Repository
 ```sh
-git clone https://github.com/your-username/your-laravel-project.git
-cd your-laravel-project
+git clone https://github.com/anmolkoirala1313/bin-booking.git
 ```
 
 ### 2. Install Dependencies
 ```sh
 composer install
 ```
+If this fails, try composer update
+
+```sh
+composer update
+```
 
 ### 3. Create Environment File
 ```sh
 cp .env.example .env
 ```
-Modify the `.env` file and set up your database credentials and other environment variables.
+3.1 Modify the `.env` file and set up your database credentials and other environment variables.
+
+3.2 Go to Database > Seeders > DatabaseSeeder.php
+
+> uncomment the list mentioned below and run the  seeder command from step 4.2.
+//            UserSeeder::class,
+//            SettingSeeder::class,
 
 ### 4. Set Up the Database
+
+4.1 Run the migration first
+
+```sh
+php artisan migrate
+```
+4.2 Run the seeder after migration
+
 ```sh
 php artisan migrate --seed
 ```
 This command will create the necessary database tables and seed them with default values.
 
 ### 5. Data Migration
-If you need to refresh the database and reseed it, use the following command:
+If you need to refresh the database and reseed it, use the following command. 
+Make sure the step 3.2 is completed
+
 ```sh
 php artisan migrate:fresh --seed
 ```
@@ -71,23 +91,7 @@ chmod -R 775 storage bootstrap/cache
 ```sh
 php artisan serve
 ```
-This will start the Laravel development server at `http://127.0.0.1:8000`.
-
-## Additional Commands
-### Running Queues (If applicable)
-```sh
-php artisan queue:work
-```
-
-### Running Scheduled Tasks Locally
-```sh
-php artisan schedule:work
-```
-
-### Running Tests
-```sh
-php artisan test
-```
+This will start the Laravel development server at `http://localhost:8000` or `http://127.0.0.1:8000`.
 
 ## Deployment Notes
 For production environments:
