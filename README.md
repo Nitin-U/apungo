@@ -103,3 +103,155 @@ For production environments:
 ---
 Now you're all set! 🚀 If you run into any issues, check the Laravel [documentation](https://laravel.com/docs) or open an issue on GitHub.
 
+
+# Git Workflow Guide
+
+This document outlines the Git workflow for our project. All developers should follow these steps to maintain a clean and structured repository.
+
+## **Branching Strategy**
+
+- `main` → **Stable, production-ready branch** (only merge tested code here).
+- `development` → **Testing branch where features are merged and deployed for review**.
+- `feature/*` → **Individual branches for each new feature or bug fix**.
+
+## **1️⃣ One-Time Setup (Creating `develop` Branch)**
+
+```sh
+# Switch to main branch and pull latest changes
+git checkout main
+git pull origin main
+
+# Create develop branch from main
+git checkout -b development
+git push -u origin development
+```
+
+## **2️⃣ Developer Workflow (Creating & Working on a Feature Branch)**
+
+Always create the branch from development
+
+```sh
+# Switch to development
+git checkout development
+git pull origin development  # Always Ensure latest updates
+
+# Create a new feature branch
+git checkout -b feature-branch-name (anmol01)
+git push -u origin feature-branch-name (anmol01)
+```
+
+### **Working on the Feature**
+```sh
+# Add changes
+git add .
+
+# Commit with a meaningful message
+git commit -m "Implemented feature XYZ"
+
+# Push changes
+git push origin feature-branch-name (anmol01)
+```
+
+## **3️⃣ Merging Feature Branch into `develop` (For Testing & Deployment)**
+
+```sh
+# Switch to development
+git checkout development
+git pull origin development
+
+# Merge the feature branch
+git merge feature-branch-name (anmol01)
+
+# Push changes
+git push origin development
+```
+
+## **4️⃣ Resolving Merge Conflicts in Feature Branch)**
+
+If there are merge conflicts while merging your feature branch with development, follow these steps:
+```sh
+# Switch to feature branch
+git checkout feature-branch-name (anmol01)
+
+# Pull the latest develop branch to see conflicts
+git pull origin development
+```
+Now, open the conflicting files in your editor and manually resolve conflicts. After resolving:
+```sh
+# Mark conflicts as resolved
+git add .
+
+# Commit the resolved changes
+git commit -m "Resolved merge conflicts with development"
+
+# Push the updated feature branch
+git push origin feature-branch-name  (anmol01)
+```
+
+## **4️⃣ Deploy & Test From `develop`**
+- Deploy the `develop` branch to a staging environment.
+- Perform testing and quality assurance.
+- If everything is good, proceed to merge `develop` into `main`.
+
+## **5️⃣ Merging `develop` into `main` (For Production Release)**
+
+```sh
+# Switch to main
+git checkout main
+git pull origin main
+
+# Merge develop into main
+git merge develop
+
+# Push changes to remote main branch
+git push origin main
+```
+
+### **Tag a Release (Optional but Recommended)**
+```sh
+git tag -a v1.0 -m "Release version 1.0"
+git push origin v1.0
+```
+
+## **6️⃣ Keep `develop` Up to Date After Releasing to `main`**
+```sh
+# Switch to develop
+git checkout develop
+git pull origin develop
+
+# Merge main back into develop
+git merge main
+
+# Push changes
+git push origin develop
+```
+
+---
+
+## **📌 Summary of Git Commands**
+
+| Action | Command |
+|--------|---------|
+| **Create `development` branch (one-time)** | `git checkout -b development` → `git push -u origin development` |
+| **Create a feature branch** | `git checkout -b feature-branch-name` → `git push -u origin feature-branch-name` |
+| **Commit & Push changes** | `git add .` → `git commit -m "Message"` → `git push origin feature-branch-name` |
+| **Merge feature into `develop`** | `git checkout development` → `git pull origin development` → `git merge feature-branch-name` → `git push origin development` |
+| **Merge `develop` into `main` (after testing)** | `git checkout main` → `git pull origin main` → `git merge development` → `git push origin main` |
+| **Delete feature branch** | `git branch -d feature-branch-name` → `git push origin --delete feature-branch-name` |
+| **Tag a release (optional)** | `git tag -a v1.0 -m "Release version 1.0"` → `git push origin v1.0` |
+
+---
+
+## **🚀 Best Practices**
+✅ **Always pull the latest changes (`git pull origin development`) before starting work.**  
+✅ **Use descriptive branch names** (e.g., `feature-authentication`, `bugfix-login`).  
+✅ **Write clear commit messages** (e.g., `Fix: User login validation`).  
+✅ **Always merge into `develop` first for testing before merging into `main`.**  
+✅ **Delete merged branches to keep the repo clean.**  
+
+---
+
+By following this workflow, we ensure a smooth and efficient development process while maintaining stability in `main`. Happy coding! 🚀
+
+
+
