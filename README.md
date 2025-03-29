@@ -159,11 +159,31 @@ git push origin feature-branch-name (anmol01)
 git checkout development
 git pull origin development
 
-# Merge the feature branch
+# If Development branch is already updated, you can merge your branch
+
+# Merge Branch
 git merge feature-branch-name (anmol01)
 
 # Push changes
 git push origin development
+
+# If changes are seen in development i.e other branches are merged. Follow mentioned steps
+
+# Checkout to your current feature branch
+git checkout feature-branch-name (anmol01)
+
+# rebase development
+git rebase origin development
+
+# rebase development
+git rebase origin development
+
+# Checkout to development
+git pull origin development
+
+# Finally merge branch
+git merge feature-branch-name (anmol01)
+
 ```
 
 ## **4️⃣ Resolving Merge Conflicts in Feature Branch)**
