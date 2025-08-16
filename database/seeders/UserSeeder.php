@@ -17,12 +17,12 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'Sid Admin User',
-            'slug' => 'sid-admin',
-            'email' => 'info@sidsupport.com',
+            'name' => 'Dipak Admin User',
+            'slug' => 'dipak-admin',
+            'email' => 'admin@gmail.com',
             'user_type' => 'admin',
             'status' => 1,
-            'password' => Hash::make('everest@123'),
+            'password' => Hash::make('apungo@123'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
     }
