@@ -1,8 +1,9 @@
 //handle form requests via ajax
 $(document).ready(function() {
-    reinitializeSelect2();
     loadEditor();
     loadNormalDatatable();
+    reinitializeSelect2();
+    initializedFlatPickr();
 });
 
 function loadNormalDatatable(){
@@ -39,6 +40,46 @@ function reinitializeSelect2(){
     }
 }
 
+function initializedFlatPickr(){
+    $('.flatpickr-input').flatpickr({
+        dateFormat: "d/m/Y", // Customize the format as needed
+        monthSelectorType: "static",
+        yearSelectorType: "static",
+        minDate: "today",
+        onReady: function (selectedDates, dateStr, instance) {
+            addClearButton(instance); // Ensure the clear button is added
+        },
+        onChange: function (selectedDates, dateStr, instance) {
+            addClearButton(instance); // Ensure the clear button stays after date change
+        }
+    });
+
+    $('.start_date_filter').flatpickr({
+        dateFormat: "d/m/Y", // Customize the format as needed
+        monthSelectorType: "static",
+        yearSelectorType: "static",
+        onReady: function (selectedDates, dateStr, instance) {
+            addClearButton(instance); // Ensure the clear button is added
+        },
+        onChange: function (selectedDates, dateStr, instance) {
+            addClearButton(instance); // Ensure the clear button stays after date change
+        }
+    });
+}
+
+function addClearButton(instance) {
+    let clearButton = instance.calendarContainer.querySelector(".flatpickr-clear");
+    if (!clearButton) {
+        let clearBtn = document.createElement("button");
+        clearBtn.className = "flatpickr-clear";
+        clearBtn.innerHTML = "Clear";
+        clearBtn.type = "button";
+        clearBtn.addEventListener("click", function () {
+            instance.clear(); // Clears the date field
+        });
+        instance.calendarContainer.appendChild(clearBtn);
+    }
+}
 
 $(document).on('submit','form.submit_form', function (e){
    e.preventDefault();
@@ -79,11 +120,17 @@ $(document).on('submit','form.submit_form', function (e){
        error: function (error){
            button.prop("disabled", false);
            $('span.text-danger').remove();
+           form.find('#all-errors').remove();
            if(error.responseJSON.errors){
+               // Build the error list HTML
+               let allErrorMessages = $('<div id="all-errors" class="mt-2 w-100 text-danger font-13"><ul class="mb-0"></ul></div>');
+               let ul = allErrorMessages.find('ul');
+
                $.each(error.responseJSON.errors, function (index, error){
+                   ul.append('<li>' + error[0] + '</li>');
 
                    let html = document.createElement('span');
-                   html.className = index + ' text-danger';
+                   html.className = index + ' text-danger font-12';
                    html.innerText = error[0];
 
                    if (form.find("[name='" + index + "[]']").length) {
@@ -97,10 +144,16 @@ $(document).on('submit','form.submit_form', function (e){
                    } else {
                        form.find("[name='" + index + "']:first").after(html);
                    }
-               })
+
+                   // Find the first outer div inside the form that wraps the submit button
+                   let buttonWrapper = form.find('.hstack').closest('div');
+                   if (buttonWrapper.length) {
+                       buttonWrapper.before(allErrorMessages);
+                   }
+               });
            }
        }
-   })
+   });
 });
 
 $(document).on('click','.cs-remove-data', function (e) {

@@ -91,7 +91,7 @@
     display: none !important;
   }
   .layout-menu-expanded .app-brand .layout-menu-toggle {
-    display: block !important;
+    display: none !important;
   }
 }
 
