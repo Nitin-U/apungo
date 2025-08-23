@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Customer;
+use App\Models\Vendor;
 
 
 class User extends Authenticatable
@@ -77,5 +79,15 @@ class User extends Authenticatable
     public function scopeDescending(Builder $query): void
     {
         $query->orderBy('created_at', 'DESC');
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class);
     }
 }
