@@ -24,7 +24,7 @@ return new class extends Migration
             $table->boolean('status')->default(0);
             $table->text('oauth_id')->nullable();
             $table->text('oauth_type')->nullable();
-            $table->enum('user_type', ['admin','driver','general'])->default('general');
+            $table->enum('user_type', ['admin','customer','vendor'])->default('customer');
             $table->text('about')->nullable();
             $table->string('cover')->nullable();
             $table->text('fb')->nullable();
