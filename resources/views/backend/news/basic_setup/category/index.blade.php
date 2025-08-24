@@ -23,10 +23,10 @@
                                         <button class="btn btn-outline-success waves-effect waves-light" type="button" data-bs-toggle="offcanvas"
                                                 data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                                             <i class="ri-add-line align-bottom me-1"></i> Add {{ $page }}</button>
-                                        <a class="btn btn-outline-danger waves-effect waves-light" href="{{ route($base_route.'trash') }}">
+                                        <a class="btn btn-outline-danger waves-effect waves-light" href="{{ route($route_name.'trash') }}">
                                             <i class="ri-delete-bin-7-line align-bottom me-1"></i>  Trash </a>
                                     </div>
-                                    @include($view_path.'create')
+                                    @include($resource_path.'create')
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
 
                                             </td>
                                             <td>
-                                                @include($module.'includes.dataTable_action',['params'=>['id'=>$row->id,'base_route'=>$base_route]])
+                                                @include($module.'includes.dataTable_action',['params'=>['id'=>$row->id,'route_name'=>$route_name]])
                                             </td>
                                         </tr>
                                     @endforeach

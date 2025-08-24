@@ -11,7 +11,7 @@ class UserService {
 
 
     protected string $module        = BACKEND;
-    protected string $base_route    = 'backend.user.user-management.';
+    protected string $route_name    = 'backend.general_setup.user_management.';
     private DataTables $dataTables;
     private User $model;
 
@@ -29,14 +29,14 @@ class UserService {
                 $params = [
                     'id'            => $item->id,
                     'status'        => $item->status,
-                    'base_route'    => $this->base_route,
+                    'route_name'    => $this->route_name,
                 ];
                 return view($this->module.'includes.status', compact('params'));
             })
             ->editColumn('action',function ($item){
                 $params = [
                     'id'            => $item->id,
-                    'base_route'    => $this->base_route,
+                    'route_name'    => $this->route_name,
                 ];
                 return view($this->module.'.includes.dataTable_action', compact('params'));
 

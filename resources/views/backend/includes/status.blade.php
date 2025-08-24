@@ -1,4 +1,4 @@
-@php $route = $params['base_route'] ?? $base_route; @endphp
+@php $route = $params['route_name'] ?? $route_name; @endphp
 <div class="btn-group view-btn" id="status-button-{{ $params['id'] }}">
     <button class="btn btn-light dropdown-toggle" style="width: 10em;" type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
         {{ucwords( $params['status'] ? 'Active':'Inactive' )}}

@@ -21,7 +21,7 @@
     </style>
 @endsection
 @section('content')
-    @include($view_path.'includes.menu')
+    @include($resource_path.'includes.menu')
 
     <div class="page-content">
         <?php
@@ -36,7 +36,7 @@
 
             <div class="card">
                 <div class="card-header border-0 rounded">
-                    {!! Form::open(['route' => $base_route.'index','method'=>'GET','class'=>'needs-validation','id'=>'basic-form','novalidate'=>'']) !!}
+                    {!! Form::open(['route' => $route_name.'index','method'=>'GET','class'=>'needs-validation','id'=>'basic-form','novalidate'=>'']) !!}
 
                         <div class="row g-2">
                             <div class="col-xl-3">
@@ -229,7 +229,7 @@
                             </div>
                             <div class="card-body">
                                 @if($data['desiredMenu'] == '')
-                                    {!! Form::open(['route' => $base_route.'store','method'=>'post','id'=>'menu-form','class'=>'needs-validation','novalidate'=>'']) !!}
+                                    {!! Form::open(['route' => $route_name.'store','method'=>'post','id'=>'menu-form','class'=>'needs-validation','novalidate'=>'']) !!}
                                         <div class="mb-3">
                                             <label for="menuname" class="form-label">Menu Name</label>
                                             <input type="text" name="name" class="form-control border-dashed" id="menuname"
@@ -274,7 +274,7 @@
                                                                                 </a>
                                                                             </div>
                                                                             <div class="card-body p-2">
-                                                                                {!! Form::open(['method'=>'post','url'=>route($base_route.'update_menu_item', @$item->id),'class'=>'needs-validation','novalidate'=>'']) !!}
+                                                                                {!! Form::open(['method'=>'post','url'=>route($route_name.'update_menu_item', @$item->id),'class'=>'needs-validation','novalidate'=>'']) !!}
                                                                                 <div class="form-group mb-3">
                                                                                     <label>Link Name </label>
                                                                                     <input type="text" class="form-control border-dashed" name="name" value="@if(empty(@$item->name)) {{@$item->title}} @else {{@$item->name}} @endif">
@@ -328,7 +328,7 @@
                                                                                                 </a>
                                                                                             </div>
                                                                                             <div class="card-body p-2">
-                                                                                                {!! Form::open(['method'=>'post','url'=>route($base_route.'update_menu_item', @$data_child->id),'class'=>'needs-validation','novalidate'=>'']) !!}
+                                                                                                {!! Form::open(['method'=>'post','url'=>route($route_name.'update_menu_item', @$data_child->id),'class'=>'needs-validation','novalidate'=>'']) !!}
                                                                                                 <div class="form-group mb-3">
                                                                                                     <label>Link Name </label>
                                                                                                     <input type="text" class="form-control border-dashed" name="name" value="@if(empty($data_child->name)) {{$data_child->title}} @else {{$data_child->name}} @endif">
@@ -383,7 +383,7 @@
                                                                                                                     </a>
                                                                                                                 </div>
                                                                                                                 <div class="card-body p-2">
-                                                                                                                    {!! Form::open(['method'=>'post','url'=>route($base_route.'update_menu_item', @$data1->id),'class'=>'needs-validation','novalidate'=>'']) !!}
+                                                                                                                    {!! Form::open(['method'=>'post','url'=>route($route_name.'update_menu_item', @$data1->id),'class'=>'needs-validation','novalidate'=>'']) !!}
                                                                                                                     <div class="form-group mb-3">
                                                                                                                         <label>Link Name </label>
                                                                                                                         <input type="text" class="form-control border-dashed" name="name" value="@if(empty($data1->name)) {{$data1->title}} @else {{$data1->name}} @endif">
@@ -470,7 +470,7 @@
                                             </div>
 
                                             <div>
-                                                <a href="{{route($base_route.'delete',$data['desiredMenu']->id)}}" id="deleteMenu" class="btn btn-outline-danger waves-effect waves-light btn-label">
+                                                <a href="{{route($route_name.'delete',$data['desiredMenu']->id)}}" id="deleteMenu" class="btn btn-outline-danger waves-effect waves-light btn-label">
                                                     <i class=" ri-delete-bin-6-line label-icon align-middle fs-16 me-2"></i>Remove Menu</a>
 
                                                 <button type="button" id="saveMenu" class="btn btn-outline-success waves-effect waves-light pull-right @if(count(@$slug_to_disable) == 0  ) disabled @endif">
@@ -505,5 +505,5 @@
     <script src="{{asset('assets/backend/libs/sweetalert2/sweetalert2.min.js')}}"></script>
     <script src="{{asset('assets/backend/js/jquery-sortable.js')}}"></script>
     @include($module.'includes.toast_message')
-    @include($base_route.'includes.script')
+    @include($route_name.'includes.script')
 @endsection

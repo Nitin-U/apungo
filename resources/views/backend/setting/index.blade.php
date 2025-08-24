@@ -14,7 +14,7 @@
                     <h4 class="card-title mb-0 flex-grow-1">{{ $page_title }}</h4>
                 </div>
             </div>
-            @include($view_path.'includes.form')
+            @include($resource_path.'includes.form')
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
         $(document).ready(function() {
             $('.remove-brochure').on('click', function() {
                 $.ajax({
-                    url: '{{ route($base_route."remove_brochure") }}',
+                    url: '{{ route($route_name."remove_brochure") }}',
                     method: 'GET',
                     success: function (url){
                         window.location.href = url;

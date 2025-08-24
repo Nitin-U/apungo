@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\User;
+namespace App\Http\Controllers\Backend\GeneralSetup;
 
 
 use App\Http\Controllers\Base\BaseController;
@@ -17,8 +17,8 @@ class UserController extends BaseController
 {
     use ControllerTrait;
     protected string $module            = BACKEND;
-    protected string $route_name        = BACKEND.'user.user-management.';
-    protected string $resource_path     = BACKEND.'user.user_management.';
+    protected string $route_name        = BACKEND.'general_setup.user_management.';
+    protected string $resource_path     = BACKEND.'general_setup.user_management.';
     protected string $page              = 'User';
     protected string $folder_name       = 'user';
     protected string $page_title, $page_method, $image_path;
@@ -86,8 +86,8 @@ class UserController extends BaseController
 
         DB::beginTransaction();
         try {
-            if($request->has('password_input')) {
-                $request->request->add(['password', bcrypt($request['password_input'])]);
+            if($request->filled('password_input')) {
+                $request->request->add(['password' => bcrypt($request->input('password_input'))]);
             }
             if($request->hasFile('image_input')){
                 $image_name = $this->uploadImage($request->file('image_input'),'200','200');

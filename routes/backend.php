@@ -5,7 +5,7 @@ use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\News\BlogCategoryController;
 use App\Http\Controllers\Backend\News\BlogController;
 use App\Http\Controllers\Backend\SettingController;
-use App\Http\Controllers\Backend\User\UserController;
+use App\Http\Controllers\Backend\GeneralSetup\UserController;
 use App\Http\Controllers\Backend\User\UserProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -93,3 +93,14 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 //Route::resource('menu', MenuController::class)->names('menu');
 //
 //Route::resource('setting', SettingController::class)->names('setting')->middleware(['auth']);
+
+Route::prefix('general-setup/')->name('general_setup.')->middleware(['auth'])->group(function () {
+
+    //user related routes
+    Route::post('/user-management/status-update', [UserController::class,'statusUpdate'])->name('user_management.status-update')->middleware(['isAdmin']);
+    Route::post('/user-management/data', [UserController::class,'getDataForDataTable'])->name('user_management.data')->middleware(['isAdmin']);
+    Route::get('/user-management/trash', [UserController::class,'trash'])->name('user_management.trash')->middleware(['isAdmin']);
+    Route::post('/user-management/trash/{id}/restore', [UserController::class,'restore'])->name('user_management.restore')->middleware(['isAdmin']);
+    Route::delete('/user-management/trash/{id}/remove', [UserController::class,'removeTrash'])->name('user_management.remove-trash')->middleware(['isAdmin']);
+    Route::resource('user-management', UserController::class)->names('user_management')->middleware(['isAdmin']);
+});

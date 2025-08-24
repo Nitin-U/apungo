@@ -6,7 +6,7 @@
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="{{route($module.'dashboard')}}">Dashboard</a></li>
                     @if($page_method !=='index')
-                        <li class="breadcrumb-item"><a href="{{route($base_route.'index')}}">{{ $page }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{route($route_name.'index')}}">{{ $page }}</a></li>
                         <li class="breadcrumb-item active">{{ $page_title }}</a></li>
                     @else
                         <li class="breadcrumb-item active">{{ $page }}</a></li>

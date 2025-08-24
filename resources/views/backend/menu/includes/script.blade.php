@@ -130,7 +130,7 @@
         $.ajax({
             type:"get",
             data: {menuid:menuid,ids:ids},
-            url: "{{route($base_route.'page')}}",
+            url: "{{route($route_name.'page')}}",
             success:function(res){
                 location.reload();
             }
@@ -158,7 +158,7 @@
         $.ajax({
             type:"get",
             data: {menuid:menuid,ids:ids},
-            url: "{{route($base_route.'blog')}}",
+            url: "{{route($route_name.'blog')}}",
             success:function(res){
                 location.reload();
             }
@@ -186,7 +186,7 @@
         $.ajax({
             type:"get",
             data: {menuid:menuid,ids:ids},
-            url: "{{route($base_route.'service')}}",
+            url: "{{route($route_name.'service')}}",
             success:function(res){
                 location.reload();
             }
@@ -209,7 +209,7 @@
             $.ajax({
                 type:"get",
                 data: {menuid:menuid,url:url,url_text:url_text},
-                url: "{{route($base_route.'custom')}}",
+                url: "{{route($route_name.'custom')}}",
                 success:function(res){
                     location.reload();
                 }
@@ -235,7 +235,7 @@
         $.ajax({
             type:"get",
             data: {menuid:menuid,data:data,location:location,title:title},
-            url: "{{route($base_route.'updateMenu')}}",
+            url: "{{route($route_name.'updateMenu')}}",
             success:function(res){
                 window.location.reload();
             }

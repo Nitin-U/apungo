@@ -57,7 +57,7 @@
             success: function(response){
                 var oldstatus         = (response.status == 0) ? "Active" : "Inactive";
                 var newstatus               = (response.status == 0) ? "Inactive" : "Active";
-                var status_url        = '{{route($base_route.'status-update')}}';
+                var status_url        = '{{route($route_name.'status-update')}}';
                 var replacementblock  = '#status-button-'+response.id;
                 var replacement = '<button class="btn btn-light dropdown-toggle" style="width: 10em;" type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"> '
                     +

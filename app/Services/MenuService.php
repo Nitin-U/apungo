@@ -12,8 +12,8 @@ class MenuService {
 
 
     protected string $module        = BACKEND;
-    protected string $base_route    = 'backend.menu.';
-    protected string $view_path     = 'backend.menu.';
+    protected string $route_name    = 'backend.menu.';
+    protected string $resource_path     = 'backend.menu.';
 
     private Menu $model;
 

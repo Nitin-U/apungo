@@ -9,7 +9,7 @@
             <div class="modal-body">
 
 
-                {!! Form::open(['route' => $base_route.'store','method'=>'post','id'=>'menu-form','class'=>'needs-validation','novalidate'=>'']) !!}
+                {!! Form::open(['route' => $route_name.'store','method'=>'post','id'=>'menu-form','class'=>'needs-validation','novalidate'=>'']) !!}
 
                 <div class="row">
                     <div class="form-group">

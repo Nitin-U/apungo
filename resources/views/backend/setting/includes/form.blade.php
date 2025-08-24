@@ -1,7 +1,7 @@
 @if($data['row'])
-    {!! Form::model($data['row'], ['route' => [$base_route.'update',$data['row']->id ], 'method' => 'PUT','class'=>'submit_form','enctype'=>'multipart/form-data']) !!}
+    {!! Form::model($data['row'], ['route' => [$route_name.'update',$data['row']->id ], 'method' => 'PUT','class'=>'submit_form','enctype'=>'multipart/form-data']) !!}
 @else
-    {!! Form::open(['route' => $base_route.'store', 'method'=>'POST', 'class'=>'submit_form','enctype'=>'multipart/form-data']) !!}
+    {!! Form::open(['route' => $route_name.'store', 'method'=>'POST', 'class'=>'submit_form','enctype'=>'multipart/form-data']) !!}
 @endif
 
 <div class="row mb-4">
@@ -35,9 +35,9 @@
             </div>
         </div>
 
-        @include($view_path.'includes.images')
+        @include($resource_path.'includes.images')
 
-        @include($view_path.'includes.meta_tabs')
+        @include($resource_path.'includes.meta_tabs')
 
         <div class="text-end mb-3">
             {!! Form::submit($data['row'] ? 'Update':'Create',['class'=>'btn btn-success mt-3','id'=>'add-button']) !!}
@@ -48,11 +48,11 @@
 
     <div class="col-lg-4">
         <div class="sticky-side-div">
-           @include($view_path.'includes.address')
+           @include($resource_path.'includes.address')
 
-           @include($view_path.'includes.contact_number')
+           @include($resource_path.'includes.contact_number')
 
-           @include($view_path.'includes.social_link')
+           @include($resource_path.'includes.social_link')
         </div>
     </div>
 </div>
