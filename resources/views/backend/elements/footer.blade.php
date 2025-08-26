@@ -46,8 +46,11 @@
 <script src="{{asset('assets/backend/js/main.js')}}"></script>
 
 <!-- Additional JS -->
-<script src="{{asset('assets/backend/js/select2.min.js')}}"></script>
-
+<script src="{{asset('assets/backend/vendor/js/select2.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/backend/vendor/js/toastify-js.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/base/nav-scroll.js')}}"></script>
+<script src="{{asset('assets/backend/vendor/js/moment.min.js')}}"></script>
+<script src="{{asset('assets/backend/vendor/js/flatpickr.js')}}"></script>
 @yield('js')
 @stack('scripts')
 

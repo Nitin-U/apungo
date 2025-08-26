@@ -7,7 +7,7 @@
     <meta name="description" content="{{ $setting_data->description ?? '' }}">
     <meta name="author" content="" />
 
-    <title>@yield('title') | {{ucwords(@$setting_data->title ?? 'Twins Travels')}}</title>
+    <title>@yield('title') | {{ucwords(@$setting_data->title ?? 'Bin Booking')}}</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon"  href="{{ $setting_data->favicon ?  asset(imagePath($setting_data->favicon)) : ''}}">
@@ -29,10 +29,16 @@
     <link rel="stylesheet" href="{{asset('assets/backend/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/backend/vendor/libs/apex-charts/apex-charts.css')}}" />
 
+    <!-- custom Css-->
+    <link href="{{asset('assets/backend/vendor/css/custom/custom.css')}}" rel="stylesheet" type="text/css" />
+
+    <link href="{{asset('assets/backend/vendor/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
+
     <!-- Page CSS -->
     <script src="{{ asset('assets/backend/vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('assets/backend/js/config.js') }}"></script>
-
+    <link href="{{ asset('assets/backend/vendor/css/toastify.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{asset('assets/backend/vendor/css/flatpickr.css')}}">
     @yield('css')
     @stack('styles')
     <meta name="_token" content="{{ csrf_token() }}">
@@ -65,7 +71,7 @@
                     </div>
                     <!-- /Search -->
 
-                    <ul class="navbar-nav flex-row align-items-center ms-md-auto">
+                    <ul class="navbar-nav flex-row align-items-center ms-sm-auto ms-md-auto">
 
                         <!-- Quick links  -->
                         <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
@@ -118,115 +124,115 @@
                         <!-- Quick links -->
 
                         <!-- Notification -->
-                        <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2">
-                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                          <span class="position-relative">
-                            <i class="icon-base bx bx-bell icon-md"></i>
-                            <span class="badge rounded-pill bg-danger badge-dot badge-notifications border"></span>
-                          </span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end p-0">
-                                <li class="dropdown-menu-header border-bottom">
-                                    <div class="dropdown-header d-flex align-items-center py-3">
-                                        <h6 class="mb-0 me-auto">Notification</h6>
-                                        <div class="d-flex align-items-center h6 mb-0">
-                                            <span class="badge bg-label-primary me-2">8 New</span>
-                                            <a href="javascript:void(0)" class="dropdown-notifications-all p-2" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Mark all as read" data-bs-original-title="Mark all as read"><i class="icon-base bx bx-envelope-open text-heading"></i></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dropdown-notifications-list scrollable-container ps">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                                            <div class="d-flex">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div class="avatar">
-                                                        <img src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/img/avatars/1.png" alt="" class="rounded-circle">
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow-1">
-                                                    <h6 class="small mb-0">Congratulation Lettie 🎉</h6>
-                                                    <small class="mb-1 d-block text-body">Won the monthly best seller gold badge</small>
-                                                    <small class="text-body-secondary">1h ago</small>
-                                                </div>
-                                                <div class="flex-shrink-0 dropdown-notifications-actions">
-                                                    <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                                                    <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="icon-base bx bx-x"></span></a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                                            <div class="d-flex">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div class="avatar">
-                                                        <span class="avatar-initial rounded-circle bg-label-danger">CF</span>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow-1">
-                                                    <h6 class="small mb-0">Charles Franklin</h6>
-                                                    <small class="mb-1 d-block text-body">Accepted your connection</small>
-                                                    <small class="text-body-secondary">12hr ago</small>
-                                                </div>
-                                                <div class="flex-shrink-0 dropdown-notifications-actions">
-                                                    <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                                                    <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="icon-base bx bx-x"></span></a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
-                                            <div class="d-flex">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div class="avatar">
-                                                        <img src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/img/avatars/2.png" alt="" class="rounded-circle">
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow-1">
-                                                    <h6 class="small mb-0">New Message ✉️</h6>
-                                                    <small class="mb-1 d-block text-body">You have new message from Natalie</small>
-                                                    <small class="text-body-secondary">1h ago</small>
-                                                </div>
-                                                <div class="flex-shrink-0 dropdown-notifications-actions">
-                                                    <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                                                    <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="icon-base bx bx-x"></span></a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                                            <div class="d-flex">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div class="avatar">
-                                                        <span class="avatar-initial rounded-circle bg-label-success"><i class="icon-base bx bx-cart"></i></span>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow-1">
-                                                    <h6 class="small mb-0">Whoo! You have new order 🛒</h6>
-                                                    <small class="mb-1 d-block text-body">ACME Inc. made new order $1,154</small>
-                                                    <small class="text-body-secondary">1 day ago</small>
-                                                </div>
-                                                <div class="flex-shrink-0 dropdown-notifications-actions">
-                                                    <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
-                                                    <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="icon-base bx bx-x"></span></a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></li>
-                                <li class="border-top">
-                                    <div class="d-grid p-4">
-                                        <a class="btn btn-primary btn-sm d-flex" href="javascript:void(0);">
-                                            <small class="align-middle">View all notifications</small>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
+{{--                        <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2">--}}
+{{--                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">--}}
+{{--                          <span class="position-relative">--}}
+{{--                            <i class="icon-base bx bx-bell icon-md"></i>--}}
+{{--                            <span class="badge rounded-pill bg-danger badge-dot badge-notifications border"></span>--}}
+{{--                          </span>--}}
+{{--                            </a>--}}
+{{--                            <ul class="dropdown-menu dropdown-menu-end p-0">--}}
+{{--                                <li class="dropdown-menu-header border-bottom">--}}
+{{--                                    <div class="dropdown-header d-flex align-items-center py-3">--}}
+{{--                                        <h6 class="mb-0 me-auto">Notification</h6>--}}
+{{--                                        <div class="d-flex align-items-center h6 mb-0">--}}
+{{--                                            <span class="badge bg-label-primary me-2">8 New</span>--}}
+{{--                                            <a href="javascript:void(0)" class="dropdown-notifications-all p-2" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Mark all as read" data-bs-original-title="Mark all as read"><i class="icon-base bx bx-envelope-open text-heading"></i></a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </li>--}}
+{{--                                <li class="dropdown-notifications-list scrollable-container ps">--}}
+{{--                                    <ul class="list-group list-group-flush">--}}
+{{--                                        <li class="list-group-item list-group-item-action dropdown-notifications-item">--}}
+{{--                                            <div class="d-flex">--}}
+{{--                                                <div class="flex-shrink-0 me-3">--}}
+{{--                                                    <div class="avatar">--}}
+{{--                                                        <img src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/img/avatars/1.png" alt="" class="rounded-circle">--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="flex-grow-1">--}}
+{{--                                                    <h6 class="small mb-0">Congratulation Lettie 🎉</h6>--}}
+{{--                                                    <small class="mb-1 d-block text-body">Won the monthly best seller gold badge</small>--}}
+{{--                                                    <small class="text-body-secondary">1h ago</small>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="flex-shrink-0 dropdown-notifications-actions">--}}
+{{--                                                    <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>--}}
+{{--                                                    <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="icon-base bx bx-x"></span></a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
+{{--                                        <li class="list-group-item list-group-item-action dropdown-notifications-item">--}}
+{{--                                            <div class="d-flex">--}}
+{{--                                                <div class="flex-shrink-0 me-3">--}}
+{{--                                                    <div class="avatar">--}}
+{{--                                                        <span class="avatar-initial rounded-circle bg-label-danger">CF</span>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="flex-grow-1">--}}
+{{--                                                    <h6 class="small mb-0">Charles Franklin</h6>--}}
+{{--                                                    <small class="mb-1 d-block text-body">Accepted your connection</small>--}}
+{{--                                                    <small class="text-body-secondary">12hr ago</small>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="flex-shrink-0 dropdown-notifications-actions">--}}
+{{--                                                    <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>--}}
+{{--                                                    <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="icon-base bx bx-x"></span></a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
+{{--                                        <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">--}}
+{{--                                            <div class="d-flex">--}}
+{{--                                                <div class="flex-shrink-0 me-3">--}}
+{{--                                                    <div class="avatar">--}}
+{{--                                                        <img src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/img/avatars/2.png" alt="" class="rounded-circle">--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="flex-grow-1">--}}
+{{--                                                    <h6 class="small mb-0">New Message ✉️</h6>--}}
+{{--                                                    <small class="mb-1 d-block text-body">You have new message from Natalie</small>--}}
+{{--                                                    <small class="text-body-secondary">1h ago</small>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="flex-shrink-0 dropdown-notifications-actions">--}}
+{{--                                                    <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>--}}
+{{--                                                    <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="icon-base bx bx-x"></span></a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
+{{--                                        <li class="list-group-item list-group-item-action dropdown-notifications-item">--}}
+{{--                                            <div class="d-flex">--}}
+{{--                                                <div class="flex-shrink-0 me-3">--}}
+{{--                                                    <div class="avatar">--}}
+{{--                                                        <span class="avatar-initial rounded-circle bg-label-success"><i class="icon-base bx bx-cart"></i></span>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="flex-grow-1">--}}
+{{--                                                    <h6 class="small mb-0">Whoo! You have new order 🛒</h6>--}}
+{{--                                                    <small class="mb-1 d-block text-body">ACME Inc. made new order $1,154</small>--}}
+{{--                                                    <small class="text-body-secondary">1 day ago</small>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="flex-shrink-0 dropdown-notifications-actions">--}}
+{{--                                                    <a href="javascript:void(0)" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>--}}
+{{--                                                    <a href="javascript:void(0)" class="dropdown-notifications-archive"><span class="icon-base bx bx-x"></span></a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
+{{--                                    </ul>--}}
+{{--                                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></li>--}}
+{{--                                <li class="border-top">--}}
+{{--                                    <div class="d-grid p-4">--}}
+{{--                                        <a class="btn btn-primary btn-sm d-flex" href="javascript:void(0);">--}}
+{{--                                            <small class="align-middle">View all notifications</small>--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </li>--}}
                         <!--/ Notification -->
 
                         <!-- User -->
                         <li class="nav-item navbar-dropdown dropdown-user dropdown">
                             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                 <div class="avatar avatar-online">
-                                    <img src="{{ asset('assets/backend/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle" />
+                                    <img src="{{ auth()->user()->image ?  asset(imagePath(auth()->user()->image)) : asset('assets/backend/img/avatars/default.png')}}" alt class="w-px-40 h-auto rounded-circle" />
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
@@ -235,7 +241,7 @@
                                         <div class="d-flex">
                                             <div class="flex-shrink-0 me-3">
                                                 <div class="avatar avatar-online">
-                                                    <img src="{{ asset('assets/backend/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle" />
+                                                    <img src="{{ auth()->user()->image ?  asset(imagePath(auth()->user()->image)) : asset('assets/backend/img/avatars/default.png')}}" alt class="w-px-40 h-auto rounded-circle" />
                                                 </div>
                                             </div>
                                             <div class="flex-grow-1">
@@ -262,15 +268,6 @@
                                         </a>
                                     </li>
                                 @endif
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
-                                    </a>
-                                </li>
                                 <li>
                                     <div class="dropdown-divider"></div>
                                 </li>

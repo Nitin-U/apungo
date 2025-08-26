@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\News\BlogController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\GeneralSetup\UserController;
 use App\Http\Controllers\Backend\User\UserProfileController;
+use App\Http\Controllers\Backend\Vendor\VendorController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -103,4 +104,29 @@ Route::prefix('general-setup/')->name('general_setup.')->middleware(['auth'])->g
     Route::post('/user-management/trash/{id}/restore', [UserController::class,'restore'])->name('user_management.restore')->middleware(['isAdmin']);
     Route::delete('/user-management/trash/{id}/remove', [UserController::class,'removeTrash'])->name('user_management.remove-trash')->middleware(['isAdmin']);
     Route::resource('user-management', UserController::class)->names('user_management')->middleware(['isAdmin']);
+
+     // vendor related routes
+    Route::post('/vendor-management/status-update', [VendorController::class,'statusUpdate'])
+        ->name('vendor_management.status-update')
+        ->middleware(['isAdmin']);
+
+    Route::post('/vendor-management/data', [VendorController::class,'getDataForDataTable'])
+        ->name('vendor_management.data')
+        ->middleware(['isAdmin']);
+
+    Route::get('/vendor-management/trash', [VendorController::class,'trash'])
+        ->name('vendor_management.trash')
+        ->middleware(['isAdmin']);
+
+    Route::post('/vendor-management/trash/{id}/restore', [VendorController::class,'restore'])
+        ->name('vendor_management.restore')
+        ->middleware(['isAdmin']);
+
+    Route::delete('/vendor-management/trash/{id}/remove', [VendorController::class,'removeTrash'])
+        ->name('vendor_management.remove-trash')
+        ->middleware(['isAdmin']);
+
+    Route::resource('vendor-management', VendorController::class)
+        ->names('vendor_management')
+        ->middleware(['isAdmin']);
 });

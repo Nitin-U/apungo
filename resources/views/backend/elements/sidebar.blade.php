@@ -37,6 +37,15 @@
                 </a>
             </li>
         @endif
+        @if (auth()->user()->user_type == 'admin')
+        <li class="menu-item 
+            {{ str_starts_with(request()->route()->getName(), 'backend.general_setup.vendor_management.') ? 'active' : '' }}">
+            <a href="{{ route('backend.general_setup.vendor_management.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-store"></i>
+                <div data-i18n="Vendor Management">Vendor Management</div>
+            </a>
+        </li>
+    @endif
     </ul>
 </aside>
 <!-- / Menu -->
