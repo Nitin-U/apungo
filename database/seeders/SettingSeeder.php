@@ -16,7 +16,7 @@ class SettingSeeder extends Seeder
     public function run()
     {
         DB::table('settings')->insert([
-            'title' => 'Bin Booking',
+            'title' => 'Apungo',
             'description' => 'This is a dummy description of the application',
             'created_by' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

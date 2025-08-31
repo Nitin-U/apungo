@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\GeneralSetup;
-
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Base\BaseController;
 use App\Http\Requests\Backend\UserRequest;
@@ -17,8 +16,8 @@ class UserController extends BaseController
 {
     use ControllerTrait;
     protected string $module            = BACKEND;
-    protected string $route_name        = BACKEND.'general_setup.user_management.';
-    protected string $resource_path     = BACKEND.'general_setup.user_management.';
+    protected string $route_name        = BACKEND.'user_management.';
+    protected string $resource_path     = BACKEND.'user_management.';
     protected string $page              = 'User';
     protected string $folder_name       = 'user';
     protected string $page_title, $page_method, $image_path;

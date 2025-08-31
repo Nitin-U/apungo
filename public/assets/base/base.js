@@ -121,13 +121,22 @@ $(document).on('submit','form.submit_form', function (e){
            button.prop("disabled", false);
            $('span.text-danger').remove();
            form.find('#all-errors').remove();
-           if(error.responseJSON.errors){
+           if (error.responseJSON.errors) {
                // Build the error list HTML
                let allErrorMessages = $('<div id="all-errors" class="mt-2 w-100 text-danger font-13"><ul class="mb-0"></ul></div>');
                let ul = allErrorMessages.find('ul');
 
-               $.each(error.responseJSON.errors, function (index, error){
+               $.each(error.responseJSON.errors, function (index, error) {
                    ul.append('<li>' + error[0] + '</li>');
+
+                   let field = form.find("[name='" + index + "']");
+                   let fieldArray = form.find("[name='" + index + "[]']");
+
+                   //Skip inline placement for checkboxes, but still add to top list
+                   if ((field.length && field.attr('type') === 'checkbox') ||
+                       (fieldArray.length && fieldArray.attr('type') === 'checkbox')) {
+                       return; // only skip span placement
+                   }
 
                    let html = document.createElement('span');
                    html.className = index + ' text-danger font-12';
@@ -144,13 +153,13 @@ $(document).on('submit','form.submit_form', function (e){
                    } else {
                        form.find("[name='" + index + "']:first").after(html);
                    }
-
-                   // Find the first outer div inside the form that wraps the submit button
-                   let buttonWrapper = form.find('.hstack').closest('div');
-                   if (buttonWrapper.length) {
-                       buttonWrapper.before(allErrorMessages);
-                   }
                });
+
+               //Place the grouped error list once (outside loop)
+               let buttonWrapper = form.find('.hstack').closest('div');
+               if (buttonWrapper.length) {
+                   buttonWrapper.before(allErrorMessages);
+               }
            }
        }
    });

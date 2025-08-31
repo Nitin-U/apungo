@@ -20,6 +20,9 @@ return new class extends Migration
             $table->text('remark')->nullable();
             $table->decimal('service_rate', 10, 2)->nullable();
             $table->enum('status', ['pending', 'confirmed', 'completed', 'cancelled'])->default('pending');
+            $table->foreignId('created_by')->references('id')->on('users')->cascadeOnUpdate();
+            $table->foreignId('updated_by')->nullable()->references('id')->on('users')->cascadeOnUpdate();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

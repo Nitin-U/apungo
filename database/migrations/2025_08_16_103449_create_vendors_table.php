@@ -21,8 +21,7 @@ return new class extends Migration
             $table->boolean('verified')->default(false);
             $table->boolean('availability')->default(true);
             $table->boolean('agreement')->default(false);
-            $table->timestamps();
-            $table->softDeletes();
+            $table->baseColumns();
         });
     }
 

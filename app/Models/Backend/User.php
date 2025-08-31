@@ -41,6 +41,8 @@ class User extends Authenticatable
         'oauth_id',
         'oauth_type',
         'user_type',
+        'vendor_id',
+        'customer_id'
     ];
 
     /**

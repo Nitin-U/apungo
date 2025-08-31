@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Backend;
+namespace App\Http\Requests\Backend\GeneralSetup;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -15,20 +15,23 @@ class VendorRequest extends FormRequest
     {
         $rules = [
             // Vendor-specific
-            'title'       => 'nullable|string|max:255',
             'about_me'    => 'nullable|string',
-            'experience'  => 'nullable|integer',
+            'experience'  => 'required|integer',
             'rating'      => 'nullable|numeric|min:0|max:5',
             'verified'    => 'required|boolean',
             'availability'=> 'nullable|boolean',
             'agreement'   => 'nullable|string',
+            'email'       => 'required|email|max:255|unique:vendors,email,'. $this->vendor_management,
+
 
             // User-specific
             'name'        => 'required|string|max:255',
-            'email'       => 'required|email|max:255|unique:users,email,' . $this->id,
             'contact'     => 'nullable|string|max:20',
             'address'     => 'nullable|string|max:255',
             'status'      => 'nullable|boolean',
+            // Services (must select at least one)
+            'services'    => 'required|array|min:1',
+            'services.*'  => 'exists:services,id',
         ];
 
         // Password only required on create
@@ -39,5 +42,14 @@ class VendorRequest extends FormRequest
         }
 
         return $rules;
+    }
+
+    public function messages(): array
+    {
+        return [
+            'services.required' => 'You must select at least one service.',
+            'services.min'      => 'You must select at least one service.',
+            'email.unique'      => 'The vendor with this email already exists',
+        ];
     }
 }

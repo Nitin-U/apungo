@@ -43,12 +43,6 @@
                                         <th>Contact</th>
                                         <th>Type</th>
                                         <th>Status</th>
-                                        <!-- <th>Created By</th>
-                                        <th>Modified By</th>
-                                        <th>Created Date</th>
-                                        <th>Modified Date</th>
-                                        <th>Restored By</th>
-                                        <th>Deleted By</th> -->
                                         <th class="text-right">Action</th>
                                     </tr>
                                     </thead>

@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{asset('assets/backend/vendor/css/jquery.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/backend/vendor/css/custom/datatable_style.css')}}">
     <link href="{{asset('assets/backend/vendor/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{asset('assets/backend/vendor/libs/glightbox/css/glightbox.min.css')}}" />
 @endsection
 @section('content')
 
@@ -38,10 +39,10 @@
                                     <thead class="table-light">
                                     <tr>
                                         <th>S.N</th>
-                                        <th>Title</th>
-                                        <th>Profile Picture</th>
-                                        <th>Experience</th>
-                                        <th>Rating</th>
+                                        <th>Image</th>
+                                        <th>FullName</th>
+                                        <th>Experience (Yrs)</th>
+                                        <th>Contact</th>
                                         <th>Availability</th>
                                         <th>Status</th>
                                         <th class="text-right">Action</th>
@@ -65,6 +66,7 @@
     @include($module.'includes.toast_message')
     @include($module.'includes.status_alert')
     @include($resource_path.'includes.script')
+    @include($module.'includes/gallery')
     <script type="text/javascript">
         let dataTables = $('#dataTable').DataTable({
             processing:true,
@@ -82,14 +84,20 @@
             },
             columns :[
                 {data:'DT_RowIndex', name: 'DT_RowIndex', searchable:false, orderable: false},
-                {data:'title', name: 'title', orderable: true},
-                {data:'profile_picture', name: 'profile_picture', orderable: false, searchable:false},
+                {data:'image', name: 'image', orderable: false, searchable:false},
+                {data:'fullname', name: 'fullname', orderable: false},
                 {data:'experience', name: 'experience', orderable: true},
-                {data:'rating', name: 'rating', orderable: true},
+                {data:'contact', name: 'contact', orderable: true},
                 {data:'availability', name: 'availability', orderable: true},
                 {data:'status', name: 'status', searchable:false, orderable: false},
                 {data:'action', name: 'action', searchable:false, orderable: false},
-            ]
+            ],
+            drawCallback: function() {
+                // Re-scan DOM for new .image-popup links
+                if (lightbox) {
+                    lightbox.reload();
+                }
+            }
         })
     </script>
 

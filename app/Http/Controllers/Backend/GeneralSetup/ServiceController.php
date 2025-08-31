@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Service;
+namespace App\Http\Controllers\Backend\GeneralSetup;
 
 use App\Http\Controllers\Base\BaseController;
-use App\Http\Requests\Backend\ServiceRequest;
+use App\Http\Requests\Backend\GeneralSetup\ServiceRequest;
 use App\Models\Service;
 use App\Services\ServiceService;
 use App\Traits\ControllerTrait;
@@ -40,11 +40,14 @@ class ServiceController extends BaseController
     {
         DB::beginTransaction();
         try {
+            $request->request->add(['created_by' => auth()->user()->id ]);
+
             $this->model->create($request->all());
             Session::flash(SUCCESS, $this->page.' was created successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
+            dd($e);
             Session::flash(ERROR, $this->page.' was not created. Something went wrong.');
         }
 
@@ -57,6 +60,8 @@ class ServiceController extends BaseController
 
         DB::beginTransaction();
         try {
+            $request->request->add(['updated_by' => auth()->user()->id ]);
+
             $bundle['row']->update($request->all());
             Session::flash(SUCCESS, $this->page.' was updated successfully');
             DB::commit();

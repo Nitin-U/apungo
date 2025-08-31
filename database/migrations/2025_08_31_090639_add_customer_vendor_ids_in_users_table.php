@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('customer_id')->nullable()->after('user_type')
-              ->constrained('customers')->onDelete('set null');
+                ->constrained('customers')->onDelete('set null');
             $table->foreignId('vendor_id')->nullable()->after('customer_id')
                 ->constrained('vendors')->onDelete('set null');
         });
@@ -25,7 +25,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-           $table->dropForeign(['customer_id']);
+            $table->dropForeign(['customer_id']);
             $table->dropForeign(['vendor_id']);
             $table->dropColumn(['customer_id', 'vendor_id']);
         });

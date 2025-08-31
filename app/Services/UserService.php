@@ -11,7 +11,7 @@ class UserService {
 
 
     protected string $module        = BACKEND;
-    protected string $route_name    = 'backend.general_setup.user_management.';
+    protected string $route_name    = 'backend.user_management.';
     private DataTables $dataTables;
     private User $model;
 
@@ -23,7 +23,7 @@ class UserService {
 
     public function getDataForDatatable(Request $request){
 
-        $query = $this->model->query()->orderBy('created_at', 'desc');
+        $query = $this->model->query()->where('user_type','!=','vendor')->orderBy('created_at', 'desc');
         return $this->dataTables->eloquent($query)
             ->editColumn('status',function ($item){
                 $components = [
@@ -32,6 +32,9 @@ class UserService {
                     'route_name'    => $this->route_name,
                 ];
                 return view($this->module.'includes.status', compact('components'));
+            })
+            ->editColumn('user_type',function ($item){
+               return ucfirst($item->user_type);
             })
             ->editColumn('action',function ($item){
                 $components = [

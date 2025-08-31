@@ -29,31 +29,30 @@
 
         <!-- Settings -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">General Setup</span></li>
+
         @if (auth()->user()->user_type == 'admin')
-            <li class="menu-item {{request()->route()->getName() == 'backend.general_setup.user_management.index' || request()->route()->getName() == 'backend.general_setup.user_management.trash' ? 'active':''}}">
-                <a href="{{route('backend.general_setup.user_management.index')}}" class="menu-link">
+            <li class="menu-item {{ str_starts_with(request()->route()->getName(), 'backend.general_setup.vendor_management.') ? 'active' : '' }}">
+                <a href="{{ route('backend.general_setup.vendor_management.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-store"></i>
+                    <div data-i18n="Vendor Management">Vendors</div>
+                </a>
+            </li>
+            <li class="menu-item {{ str_starts_with(request()->route()->getName(), 'backend.general_setup.service_management.') ? 'active' : '' }}">
+                <a href="{{ route('backend.general_setup.service_management.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-collection"></i>
+                    <div data-i18n="Service Management">Services</div>
+                </a>
+            </li>
+        @endif
+
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">User Setup</span></li>
+        @if (auth()->user()->user_type == 'admin')
+            <li class="menu-item {{ str_starts_with(request()->route()->getName(), 'backend.user_management.') ? 'active' : '' }}">
+                <a href="{{route('backend.user_management.index')}}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-user"></i>
                     <div data-i18n="User Management">User Management</div>
                 </a>
             </li>
-        @endif
-        @if (auth()->user()->user_type == 'admin')
-        <li class="menu-item 
-            {{ str_starts_with(request()->route()->getName(), 'backend.general_setup.vendor_management.') ? 'active' : '' }}">
-            <a href="{{ route('backend.general_setup.vendor_management.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-store"></i>
-                <div data-i18n="Vendor Management">Vendor Management</div>
-            </a>
-        </li>
-        @endif
-        @if (auth()->user()->user_type == 'admin')
-        <li class="menu-item 
-            {{ str_starts_with(request()->route()->getName(), 'backend.general_setup.service_management.') ? 'active' : '' }}">
-            <a href="{{ route('backend.general_setup.service_management.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-cog"></i>
-                <div data-i18n="Service Management">Service Management</div>
-            </a>
-        </li>
         @endif
     </ul>
 </aside>

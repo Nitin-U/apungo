@@ -32,17 +32,4 @@
     <script src="{{asset('assets/base/base.js')}}"></script>
     @include($module.'includes/gallery')
     @include($resource_path.'includes.script')
-    <script>
-        $(document).on('change', '#user_type', function(){
-            let value = $(this).val();
-            let html = document.createElement('span');
-            html.className = ' text-warning font-13 user-type';
-            html.innerText = 'Warning ! Changing user role from admin to general will revoke certain privileges';
-            if(value !== 'admin'){
-               $('#user_type').after(html)
-            }else{
-                $('span.user-type').remove();
-            }
-        });
-    </script>
 @endsection

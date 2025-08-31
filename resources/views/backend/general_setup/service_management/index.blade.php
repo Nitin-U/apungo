@@ -41,7 +41,6 @@
                                         <th>Name</th>
                                         <th>Description</th>
                                         <th>Status</th>
-                                        <th>Action</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                     </thead>

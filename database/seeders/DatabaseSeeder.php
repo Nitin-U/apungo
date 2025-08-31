@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             //Always comment after running the seeder once
-//            UserSeeder::class,
-//            SettingSeeder::class,
+            UserSeeder::class,
+            SettingSeeder::class,
         ]);
     }
 }

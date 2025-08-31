@@ -97,22 +97,22 @@
     <div class="col-lg-12">
         <div class="mb-4">
             {!! Form::label('user_type', 'User Type', ['class' => 'form-label']) !!}
-            {!! Form::select('user_type', ['admin' => 'Admin', 'general' => 'General'], $page_method == 'edit' ? $bundle['row']->user_type:'admin',['class'=>'form-select mb-3 select2','id'=>'user_type']) !!}
+            {!! Form::select('user_type', ['admin' => 'Admin', 'customer' => 'Customer'], $page_method == 'edit' ? $bundle['row']->user_type:'admin',['class'=>'form-select mb-3 select2','id'=>'user_type']) !!}
         </div>
     </div>
-    <div class="col-lg-6 {{ $page_method=='edit' && $bundle['row']->user_type == 'general' ? '':'d-none'}}" id="stage-manage">
-        {!! Form::label('can_manage_stage', 'Can Manage Booking Stages', ['class' => 'form-label']) !!}
-        <div class="mb-3 mt-2">
-            <div class="form-check form-check-inline form-radio-success">
-                {!! Form::radio('can_manage_stage', 1, false,['class'=>'form-check-input','id'=>'can_manage_stage1']) !!}
-                {!! Form::label('can_manage_stage1', 'Yes', ['class' => 'form-check-label']) !!}
-            </div>
-            <div class="form-check form-check-inline form-radio-danger">
-                {!! Form::radio('can_manage_stage', 0, true,['class'=>'form-check-input','id'=>'can_manage_stage2']) !!}
-                {!! Form::label('can_manage_stage2', 'No', ['class' => 'form-check-label']) !!}
-            </div>
-        </div>
-    </div>
+{{--    <div class="col-lg-6 {{ $page_method=='edit' && $bundle['row']->user_type == 'general' ? '':'d-none'}}" id="stage-manage">--}}
+{{--        {!! Form::label('can_manage_stage', 'Can Manage Booking Stages', ['class' => 'form-label']) !!}--}}
+{{--        <div class="mb-3 mt-2">--}}
+{{--            <div class="form-check form-check-inline form-radio-success">--}}
+{{--                {!! Form::radio('can_manage_stage', 1, false,['class'=>'form-check-input','id'=>'can_manage_stage1']) !!}--}}
+{{--                {!! Form::label('can_manage_stage1', 'Yes', ['class' => 'form-check-label']) !!}--}}
+{{--            </div>--}}
+{{--            <div class="form-check form-check-inline form-radio-danger">--}}
+{{--                {!! Form::radio('can_manage_stage', 0, true,['class'=>'form-check-input','id'=>'can_manage_stage2']) !!}--}}
+{{--                {!! Form::label('can_manage_stage2', 'No', ['class' => 'form-check-label']) !!}--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <div class="col-lg-12 border-top mt-3 mb-3">
         <div class="hstack gap-2">
             {!! Form::submit($button,['class'=>'btn btn-primary mt-3','id'=>'user-add-button']) !!}
