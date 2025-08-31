@@ -45,7 +45,16 @@
                 <div data-i18n="Vendor Management">Vendor Management</div>
             </a>
         </li>
-    @endif
+        @endif
+        @if (auth()->user()->user_type == 'admin')
+        <li class="menu-item 
+            {{ str_starts_with(request()->route()->getName(), 'backend.general_setup.service_management.') ? 'active' : '' }}">
+            <a href="{{ route('backend.general_setup.service_management.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-cog"></i>
+                <div data-i18n="Service Management">Service Management</div>
+            </a>
+        </li>
+        @endif
     </ul>
 </aside>
 <!-- / Menu -->
