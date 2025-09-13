@@ -106,18 +106,22 @@
 
     <hr class="my-6 mx-n6">
     <h6>2. Vendor Services</h6>
-    @foreach($bundle['services']->chunk(3) as $serviceChunk)
-        <div class="row">
-            @foreach($serviceChunk as $id => $name)
-                <div class="col-lg-4 d-flex mb-2">
-                    <div class="form-check me-4">
-                        {{ Form::checkbox('services[]', $id, $page_method=='edit' ? in_array($id, $bundle['vendor_services']):false, ['id' => 'service_'.$id, 'class' => 'form-check-input']) }}
-                        {{ Form::label('service_'.$id, $name, ['class' => 'form-check-label']) }}
+    @if (count($bundle['services']) > 0)
+        @foreach($bundle['services']->chunk(3) as $serviceChunk)
+            <div class="row">
+                @foreach($serviceChunk as $id => $name)
+                    <div class="col-lg-4 d-flex mb-2">
+                        <div class="form-check me-4">
+                            {{ Form::checkbox('services[]', $id, $page_method=='edit' ? in_array($id, $bundle['vendor_services']):false, ['id' => 'service_'.$id, 'class' => 'form-check-input']) }}
+                            {{ Form::label('service_'.$id, $name, ['class' => 'form-check-label']) }}
+                        </div>
                     </div>
-                </div>
-            @endforeach
-        </div>
-    @endforeach
+                @endforeach
+            </div>
+        @endforeach
+    @else
+    <span class="text-danger">No Services Found, Please Add a Service</span>
+    @endif
 
     <div class="col-lg-12 border-top mt-3 mb-3">
         <div class="hstack gap-2" id="button-container">
