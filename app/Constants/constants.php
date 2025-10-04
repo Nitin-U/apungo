@@ -19,5 +19,4 @@ CONST TRASH = 'trash';
 
 CONST BACKEND = 'backend.';
 CONST FRONTEND = 'frontend.';
-
-
+CONST HOMEPAGE = 'homepage';

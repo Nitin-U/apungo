@@ -10,10 +10,10 @@ trait FrontendSearch {
     {
         $this->page_method      = 'search';
         $this->page_title       = 'Search '.$this->page;
-        $bundle                   = $this->getCommonBundle();
-        $bundle['query']          = $request['for'];
+        $bundle                 = $this->getCommonBundle();
+        $bundle['query']        = $request['for'];
 
-        $bundle['rows']           = $this->model->query();
+        $bundle['rows']         = $this->model->query();
 
         if($request['for']){
             $bundle['rows']->where('title', 'LIKE', '%' . $bundle['query']  . '%');

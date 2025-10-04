@@ -41,9 +41,9 @@ class AppServiceProvider extends ServiceProvider
         view()->composer([BACKEND.'elements.header',
             BACKEND.'elements.footer',
             BACKEND.'elements.sidebar',
-            FRONTEND.'activity.includes.sidebar',
-            FRONTEND.'blog.includes.sidebar',
-            FRONTEND.'page.includes.map_and_description',
+            FRONTEND.'elements.header',
+            FRONTEND.'elements.seo_header',
+            FRONTEND.'elements.footer',
             'error.404',
             'auth.login'], function ($view) {
             $view->with([
