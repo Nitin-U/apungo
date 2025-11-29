@@ -43,6 +43,7 @@ class VendorController extends BaseController
     public function getBundle(): array
     {
         $bundle['services'] = Service::active()->descending()->pluck('name','id');
+        $bundle['service_mode'] = [''=>'Select a mode','physical'=>'Physical','online'=>'Online'];
         return $bundle;
     }
 
@@ -57,32 +58,51 @@ class VendorController extends BaseController
         DB::beginTransaction();
         try {
             $request->request->add(['created_by' => auth()->user()->id]);
-            $request->request->add(['password' => bcrypt($request['password_input']) ]);
+            $request->request->add(['password' => bcrypt($request['password_input'])]);
             $request->request->add(['user_type' => 'vendor']);
-            if($request->hasFile('image_input')){
-                $image_name = $this->uploadImage($request->file('image_input'),'400','400');
-                $request->request->add(['image'=>$image_name]);
+
+            if ($request->hasFile('image_input')) {
+                $image_name = $this->uploadImage($request->file('image_input'), '400', '400');
+                $request->request->add(['image' => $image_name]);
             }
 
+            $vendor = $this->vendor->create(
+                $request->except('name', 'image', 'password_input', 'password_input_confirmation', 'contact', 'address', 'services')
+            );
 
-            $vendor = $this->vendor->create($request->except('name','image','password_input','password_input_confirmation','contact','address'));
-
-            if($vendor){
+            if ($vendor) {
                 $request->request->add(['vendor_id' => $vendor->id]);
-                // attach selected services to the bundle
-                $vendor->services()->sync($request->input('services', []));
-                $this->model->create($request->all());
-            }
 
-            Session::flash(SUCCESS,$this->page.' was created successfully');
+                // Handle Vendor Services with pivot data (rate, service_mode)
+                $syncData = [];
+                $services = $request->input('services', []);
+                $rates    = $request->rate ?? [];
+                $service_mode    = $request->service_mode ?? [];
+                // dd($service_mode);
+
+                foreach ($services as $key=>$serviceId) {
+                    $syncData[$serviceId] = [
+                        'rate'          => $rates[$key] ?? 0,
+                        'service_mode'  => $service_mode[$key] ?? 'physical',
+                    ];
+                    // dd($syncData);
+                }
+                // dd($syncData);
+
+                if (!empty($syncData)) {
+                  $vendor->services()->sync($syncData);
+                }
+            }
+            $this->model->create($request->all());
+        
+            Session::flash(SUCCESS, $this->page . ' was created successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            dd($e->getMessage());
-            Session::flash(ERROR,$this->page.' was not created. '.$e->getMessage());
+            Session::flash(ERROR, $this->page . ' was not created. ' . $e->getMessage());
         }
 
-        return response()->json(route($this->route_name.INDEX));
+        return response()->json(route($this->route_name . INDEX));
     }
 
     /**
@@ -97,7 +117,15 @@ class VendorController extends BaseController
         $this->page_title           = 'Edit '.$this->page;
         $bundle                     = $this->getBundle();
         $bundle['row']              = $this->vendor->find($id);
-        $bundle['vendor_services']  = $bundle['row']->services()->pluck('service_id')->toArray();
+        $bundle['vendor_services']  = $bundle['row']->services()->get(['service_id', 'rate', 'service_mode'])
+                                        ->mapWithKeys(function ($service) {
+                                            return [
+                                                $service->service_id => [
+                                                    'rate' => $service->rate,
+                                                    'service_mode' => $service->service_mode,
+                                                ]
+                                            ];
+                                        })->toArray();
 
         return view($this->loadResource($this->resource_path.EDIT), compact('bundle'));
     }
@@ -105,33 +133,55 @@ class VendorController extends BaseController
 
     public function update(VendorRequest $request, $id)
     {
-        $bundle['row']       = $this->vendor->find($id);
-        $bundle['user']       = $this->model->find($bundle['row']->user->id);
+        $bundle['row'] = $this->vendor->find($id);
+        $bundle['user'] = $this->model->find($bundle['row']->user->id);
+
         DB::beginTransaction();
         try {
-            $request->request->add(['updated_by' => auth()->user()->id ]);
-            if($request->filled('password_input')) {
+            $request->request->add(['updated_by' => auth()->user()->id]);
+
+            if ($request->filled('password_input')) {
                 $request->request->add(['password' => bcrypt($request->input('password_input'))]);
             }
-            if($request->hasFile('image_input')){
-                $image_name = $this->uploadImage($request->file('image_input'),'400','400');
-                $request->request->add(['image'=>$image_name]);
+
+            if ($request->hasFile('image_input')) {
+                $image_name = $this->uploadImage($request->file('image_input'), '400', '400');
+                $request->request->add(['image' => $image_name]);
             }
 
-            $vendor = $bundle['row']->update($request->except('name','password_input','image','password_input_confirmation','contact','address'));
-            if($vendor){
-                $bundle['row']->services()->sync($request->input('services', []));
+            $updated = $bundle['row']->update(
+                $request->except('name', 'password_input', 'image', 'password_input_confirmation', 'contact', 'address', 'services')
+            );
+
+            if ($updated) {
+                // Handle Vendor Services with pivot data
+                $syncData = [];
+                $services = $request->input('services', []);
+                $rates    = $request->rate ?? [];
+                $service_mode    = $request->service_mode ?? [];
+
+                foreach ($services as $key=>$serviceId) {
+                    $syncData[$serviceId] = [
+                        'rate' => $rates[$key] ?? 0,
+                        'service_mode'  => $service_mode[$key] ?? 'physical',
+                    ];
+                }
+
+                if (!empty($syncData)) {
+                    $bundle['row']->services()->sync($syncData);
+                }
+
                 $bundle['user']->update($request->all());
             }
 
-            Session::flash(SUCCESS,$this->page.' was updated successfully');
+            Session::flash(SUCCESS, $this->page . ' was updated successfully');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash(ERROR,$this->page.' was not updated. '.$e->getMessage());
+            Session::flash(ERROR, $this->page . ' was not updated. ' . $e->getMessage());
         }
 
-        return response()->json(route($this->route_name.INDEX));
+        return response()->json(route($this->route_name . INDEX));
     }
 
     public function removeTrash(Request $request, $id)

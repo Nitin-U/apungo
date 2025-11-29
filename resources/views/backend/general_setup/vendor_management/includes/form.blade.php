@@ -107,18 +107,22 @@
     <hr class="my-6 mx-n6">
     <h6>2. Vendor Services</h6>
     @if (count($bundle['services']) > 0)
-        @foreach($bundle['services']->chunk(3) as $serviceChunk)
             <div class="row">
-                @foreach($serviceChunk as $id => $name)
-                    <div class="col-lg-4 d-flex mb-2">
+                @foreach($bundle['services'] as $id => $name)
+                    <div class="col-lg-2 d-flex mb-2">
                         <div class="form-check me-4">
-                            {{ Form::checkbox('services[]', $id, $page_method=='edit' ? in_array($id, $bundle['vendor_services']):false, ['id' => 'service_'.$id, 'class' => 'form-check-input']) }}
+                            {{ Form::checkbox('services[]', $id, $page_method=='edit' ? in_array($id, array_keys($bundle['vendor_services'])):false, ['id' => 'service_'.$id, 'class' => 'form-check-input']) }}
                             {{ Form::label('service_'.$id, $name, ['class' => 'form-check-label']) }}
                         </div>
                     </div>
+                    <div class="col-lg-4 d-flex mb-2"> 
+                        {!! Form::number('rate[]', $page_method=='edit' && $bundle['vendor_services'] && in_array($id, array_keys($bundle['vendor_services'])) ? $bundle['vendor_services'][$id]['rate']:null,['class'=>'form-control','placeholder'=>'Enter Rate', 'step'=>'0.1', 'min'=>'0']) !!}
+                    </div>
+                    <div class="col-lg-6 d-flex mb-2"> 
+                        {!! Form::select('service_mode[]', $bundle['service_mode'], $page_method=='edit' && $bundle['vendor_services'] && in_array($id, array_keys($bundle['vendor_services'])) ? $bundle['vendor_services'][$id]['service_mode']: null,['class'=>'form-select mb-3 select2','id'=>'service_mode_'.$id]) !!}
+                    </div>
                 @endforeach
             </div>
-        @endforeach
     @else
     <span class="text-danger">No Services Found, Please Add a Service</span>
     @endif
