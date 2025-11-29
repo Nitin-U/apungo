@@ -265,6 +265,13 @@ $("#forgot").on('click', function () {
 	$("#forgot_pw").fadeToggle("fast");
 });
 
+/* Sign Up */
+ $("#signup_link").click(function () {
+	$("#login_form").hide();
+	$("#forgot_pw").hide();
+	$("#sign_up").show();
+});
+
 /* Opacity mask */
 $('.opacity-mask').each(function() {
     $(this).css('background-color', $(this).attr('data-opacity-mask'));
