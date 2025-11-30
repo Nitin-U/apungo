@@ -40,4 +40,36 @@ class HomePageController extends BaseController
         return [];
     }
 
+    // About Us Page
+    public function about()
+    {
+        $this->page_method          = INDEX;
+        $this->page_title           = 'About Us '.$this->page;
+        return view($this->loadResource($this->resource_path.ABOUT));
+    }
+
+    // Contact Us Page
+    public function contact()
+    {
+        $this->page_method          = INDEX;
+        $this->page_title           = 'Contact Us '.$this->page;
+        return view($this->loadResource($this->resource_path.CONTACT));
+    }
+
+    // Service Page
+    public function service()
+    {
+        $this->page_method          = INDEX;
+        $this->page_title           = 'Service '.$this->page;
+        return view($this->loadResource($this->resource_path.SERVICE));
+    }
+
+    // List Page
+    public function list()
+    {
+        $this->page_method          = INDEX;
+        $this->page_title           = 'Pandit '.$this->page;
+        return view($this->loadResource($this->resource_path.LISTPAGE));
+    }
+
 }

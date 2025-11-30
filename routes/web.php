@@ -18,6 +18,10 @@ use App\Http\Controllers\Auth\CustomSignupController;
 */
 
 Route::get('/', [HomePageController::class, 'index'])->name('home');
+Route::get('/about', [HomePageController::class, 'about'])->name('about');
+Route::get('/contact', [HomePageController::class, 'contact'])->name('contact');
+Route::get('/service', [HomePageController::class, 'service'])->name('service');
+Route::get('/list', [HomePageController::class, 'list'])->name('list');
 
 Auth::routes([
     'reset' => false, // Password Reset Routes...
@@ -36,4 +40,5 @@ Route::get('/blog/category/{slug}', [BlogController::class, 'category'])->name('
 
 //custom register
 Route::post('/signup', [CustomSignupController::class, 'signup'])->name('signup.store');
+Route::get('/home', [BlogController::class, 'index'])->name('home.index');
 

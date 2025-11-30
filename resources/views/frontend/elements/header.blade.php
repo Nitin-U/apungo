@@ -98,192 +98,19 @@
                     <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                     <ul>
                         <li class="submenu">
-                            <a href="javascript:void(0);" class="show-submenu">Home <i class="icon-down-open-mini"></i></a>
-                            <ul>
-                                <li><a href="#">Owl Carousel Slider</a></li>
-                                <li><a href="#">KenBurns Slider</a></li>
-                                <li><a href="#">Home items with Carousel</a></li>
-                                <li><a href="#">Home with Search V2</a></li>
-                                <li class="third-level"><a href="javascript:void(0);">Revolution slider <strong class="badge badge-danger">New!</strong></a>
-                                    <ul>
-                                        <li><a href="#">Default slider</a></li>
-                                        <li><a href="#">Basic slider</a></li>
-                                        <li><a href="#">Youtube Hero</a></li>
-                                        <li><a href="#">Vimeo Hero</a></li>
-                                        <li><a href="#">Full Screen <strong class="badge badge-danger">New!</strong></a></li>
-                                        <li><a href="#">Full Screen Slicey <strong class="badge badge-danger">New!</strong></a></li>
-                                        <li><a href="#">Carousel</a></li>
-                                        <li><a href="#">Mailchimp Newsletter</a></li>
-                                        <li><a href="#">Fixed Caption</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Layer slider</a></li>
-                                <li><a href="#">With Only tours</a></li>
-                                <li><a href="#">Single image</a></li>
-                                <li><a href="#">Header video</a></li>
-                                <li><a href="#">With search panel</a></li>
-                                <li><a href="#">With tabs</a></li>
-                                <li><a href="#">With map</a></li>
-                                <li><a href="#">With search bar</a></li>
-                                <li><a href="#">Search bar + Video</a></li>
-                                <li><a href="#">With Text Rotator</a></li>
-                                <li><a href="#">With Cookie Bar (EU law)</a></li>
-                                <li><a href="#">Popup Advertising</a></li>
-                            </ul>
+                            <a href="{{ route('home') }}" class="show-submenu">Home</a>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);" class="show-submenu">Tours <i class="icon-down-open-mini"></i></a>
-                            <ul>
-                                <li><a href="#">All tours list</a></li>
-                                <li><a href="#">All tours grid</a></li>
-                                <li><a href="#">All tours Sort Masonry</a></li>
-                                <li><a href="#">All tours map listing</a></li>
-                                <li><a href="#">Single tour page</a></li>
-                                <li><a href="#">Single tour with gallery</a></li>
-                                <li class="third-level"><a href="javascript:void(0);">Single tour fixed sidebar</a>
-                                    <ul>
-                                        <li><a href="#">Single tour fixed sidebar</a></li>
-                                        <li><a href="#">Single tour 2 Fixed Sidebar</a></li>
-                                        <li><a href="#">Cart Fixed Sidebar</a></li>
-                                        <li><a href="#">Payment Fixed Sidebar</a></li>
-                                        <li><a href="#">Confirmation Fixed Sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Single tour working booking</a></li>
-                                <li><a href="#">Single tour cart</a></li>
-                                <li><a href="#">Single tour booking</a></li>
-                            </ul>
+                            <a href="{{ route('service') }}" class="show-submenu">Services</a>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);" class="show-submenu">Hotels <i class="icon-down-open-mini"></i></a><ul>
-                                <li><a href="#">All hotels list</a></li>
-                                <li><a href="#">All hotels grid</a></li>
-                                <li><a href="#">All hotels Sort Masonry</a></li>
-                                <li><a href="#">All hotels map listing</a></li>
-                                <li><a href="#">Single hotel page</a></li>
-                                <li><a href="#">Single hotel working booking</a></li>
-                                <li><a href="#">Single hotel contact working</a></li>
-                                <li><a href="#">Cart hotel</a></li>
-                                <li><a href="#">Booking hotel</a></li>
-                                <li><a href="#">Confirmation hotel</a></li>
-                            </ul>
+                            <a href="{{ route('list') }}" class="show-submenu">Pandits</a>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);" class="show-submenu">Transfers <i class="icon-down-open-mini"></i></a>
-                            <ul>
-                                <li><a href="#">All transfers list</a></li>
-                                <li><a href="#">All transfers grid</a></li>
-                                <li><a href="#">All transfers Sort Masonry</a></li>
-                                <li><a href="#">Single transfer page</a></li>
-                                <li><a href="#">Cart transfers</a></li>
-                                <li><a href="#">Booking transfers</a></li>
-                                <li><a href="#">Confirmation transfers</a></li>
-                            </ul>
+                            <a href="{{ route('about') }}" class="show-submenu">About Us</a>
                         </li>
                         <li class="submenu">
-                            <a href="javascript:void(0);" class="show-submenu">Restaurants <i class="icon-down-open-mini"></i></a>
-                            <ul>
-                                <li><a href="#">All restaurants list</a></li>
-                                <li><a href="#">All restaurants grid</a></li>
-                                <li><a href="#">All restaurants Sort Masonry</a></li>
-                                <li><a href="#">All restaurants map listing</a></li>
-                                <li><a href="#">Single restaurant page</a></li>
-                                <li><a href="#">Booking restaurant</a></li>
-                                <li><a href="#">Confirmation restaurant</a></li>
-                            </ul>
-                        </li>
-                        <li class="megamenu submenu">
-                            <a href="javascript:void(0);" class="show-submenu-mega">Bonus<i class="icon-down-open-mini"></i></a>
-                            <div class="menu-wrapper">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <h3>Header styles</h3>
-                                        <ul>
-                                            <li><a href="#">Default transparent</a></li>
-                                            <li><a href="#">Plain color</a></li>
-                                            <li><a href="#">Plain color on scroll</a></li>
-                                            <li><a href="#">With socials on top</a></li>
-                                            <li><a href="#">With language selection</a></li>
-                                            <li><a href="#">With lang and conversion</a></li>
-                                            <li><a href="#">With full horizontal menu</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <h3>Footer styles</h3>
-                                        <ul>
-                                            <li><a href="#">Footer default</a></li>
-                                            <li><a href="#">Footer style 2</a></li>
-                                            <li><a href="#">Footer style 3</a></li>
-                                            <li><a href="#">Footer style 4</a></li>
-                                            <li><a href="#">Footer style 6</a></li>
-                                            <li><a href="#">Footer style 7</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <h3>Shop section</h3>
-                                        <ul>
-                                            <li><a href="#">Shop</a></li>
-                                            <li><a href="#">Shop single</a></li>
-                                            <li><a href="#">Shop cart</a></li>
-                                            <li><a href="#">Shop Checkout</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- End row -->
-                            </div><!-- End menu-wrapper -->
-                        </li>
-                        <li class="megamenu submenu">
-                            <a href="javascript:void(0);" class="show-submenu-mega">Pages<i class="icon-down-open-mini"></i></a>
-                            <div class="menu-wrapper">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <h3>Pages</h3>
-                                        <ul>
-                                            <li><a href="#">About us</a></li>
-                                            <li><a href="#">General page</a></li>
-                                            <li><a href="#">Tourist guide</a></li>
-                                            <li><a href="#">Wishlist page</a></li>
-                                            <li><a href="#">Faq</a></li>
-                                            <li><a href="#">Faq smooth scroll</a></li>
-                                            <li><a href="#">Pricing tables</a></li>
-                                            <li><a href="#">Gallery 3 columns</a></li>
-                                            <li><a href="#">Gallery 4 columns</a></li>
-                                            <li><a href="#">Grid gallery</a></li>
-                                            <li><a href="#">Grid gallery with filters</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <h3>Pages</h3>
-                                        <ul>
-                                            <li><a href="#">Contact us 1</a></li>
-                                            <li><a href="#">Contact us 2</a></li>
-                                            <li><a href="#">Blog</a></li>
-                                            <li><a href="#">Blog left sidebar</a></li>
-                                            <li><a href="#">Login</a></li>
-                                            <li><a href="#">Register</a></li>
-                                            <li><a href="#" target="_blank">Invoice</a></li>
-                                            <li><a href="#">404 Error page</a></li>
-                                            <li><a href="#">Site launch / Coming soon</a></li>
-                                            <li><a href="#">Tour timeline</a></li>
-                                            <li><a href="#"><i class="icon-map"></i>  Full screen map</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <h3>Elements</h3>
-                                        <ul>
-                                            <li><a href="#"><i class="icon-columns"></i> Footer with working newsletter</a></li>
-                                            <li><a href="#"><i class="icon-inbox-alt"></i> Icon pack 1 (1900)</a></li>
-                                            <li><a href="#"><i class="icon-inbox-alt"></i> Icon pack 2 (100)</a></li>
-                                            <li><a href="#"><i class="icon-inbox-alt"></i> Icon pack 3 (30)</a></li>
-                                            <li><a href="#"><i class="icon-inbox-alt"></i> Icon pack 4 (200)</a></li>
-                                            <li><a href="#"><i class="icon-inbox-alt"></i> Icon pack 5 (360)</a></li>
-                                            <li><a href="#"><i class="icon-tools"></i> Shortcodes</a></li>
-                                            <li><a href="#" target="blank"><i class=" icon-mail"></i> Responsive email template</a></li>
-                                            <li><a href="#"><i class="icon-cog-1"></i> Admin area</a></li>
-                                            <li><a href="#"><i class="icon-align-right"></i>  RTL Version</a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- End row -->
-                            </div><!-- End menu-wrapper -->
+                            <a href="{{ route('contact') }}" class="show-submenu">Contact</a>
                         </li>
                     </ul>
                 </div><!-- End main-menu -->

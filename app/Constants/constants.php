@@ -20,3 +20,8 @@ CONST TRASH = 'trash';
 CONST BACKEND = 'backend.';
 CONST FRONTEND = 'frontend.';
 CONST HOMEPAGE = 'homepage';
+
+CONST ABOUT = 'pages.about';
+CONST CONTACT = 'pages.contact';
+CONST SERVICE = 'pages.service';
+CONST LISTPAGE = 'pages.pandit_list';
