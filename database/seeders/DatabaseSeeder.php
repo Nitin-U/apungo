@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             //Always comment after running the seeder once
             // UserSeeder::class,
             // SettingSeeder::class,
+            // ServiceSeeder::class,
         ]);
     }
 }
