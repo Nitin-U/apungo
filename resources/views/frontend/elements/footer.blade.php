@@ -80,8 +80,9 @@
     <div class="small-dialog-header">
         <h3>Sign In</h3>
     </div>
-    <form enctype="multipart/form-data">
-        <div class="sign-in-wrapper" id="login_form">
+    <form id="login_form" action="" method="POST">
+        @csrf
+        <div class="sign-in-wrapper">
             <a href="#0" class="social_bt facebook">Login with Facebook</a>
             <a href="#0" class="social_bt google">Login with Google</a>
             <div class="divider"><span>Or</span></div>
@@ -110,55 +111,68 @@
             <div class="text-center">
                 Don’t have an account? <a id="signup_link" href="javascript:void(0);">Sign up</a>
             </div>
+        </div>
+    </form>
 
-            <div id="forgot_pw">
-                <div class="form-group">
-                    <label>Please confirm login email below</label>
-                    <input type="email" class="form-control" name="email_forgot" id="email_forgot">
-                    <i class="icon_mail_alt"></i>
-                </div>
-                <p>You will receive an email containing a reset link.</p>
-                <div class="text-center">
-                    <input type="submit" value="Reset Password" name="action" class="btn_1">
-                </div>
-            </div>
+    <form id="forgot_pw" style="display:none;" action="" method="POST">
+        @csrf
+        <div class="form-group">
+            <label>Please confirm login email below</label>
+            <input type="email" class="form-control" name="email_forgot" id="email_forgot">
+            <i class="icon_mail_alt"></i>
+        </div>
+        <p>You will receive an email containing a reset link.</p>
+        <div class="text-center">
+            <input type="submit" value="Reset Password" name="action" class="btn_1">
+        </div>
+    </form>
+
+    <!-- SIGN UP SECTION -->
+    <form id="sign_up" style="display:none;" action="{{ route('signup.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" class="form-control" name="name">
+            <i class="icon_profile"></i>
         </div>
 
-        <!-- SIGN UP SECTION -->
-        <div id="sign_up" style="display:none;">
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" class="form-control" name="name">
-                <i class="icon_profile"></i>
-            </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email_signup">
+            <i class="icon_mail_alt"></i>
+        </div>
 
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" name="email_signup">
-                <i class="icon_mail_alt"></i>
-            </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password_signup">
+            <i class="icon_lock_alt"></i>
+        </div>
 
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password_signup">
-                <i class="icon_lock_alt"></i>
-            </div>
+        <div class="form-group">
+            <label>Years of Experience</label>
+            <input type="number" min="0" class="form-control" name="experience">
+            <i class="icon_calendar"></i>
+        </div>
 
-            <div class="form-group">
-                <label>Years of Experience</label>
-                <input type="number" min="0" class="form-control" name="experience">
-                <i class="icon_calendar"></i>
-            </div>
+        <div class="form-group">
+            <label>Document Type</label>
+            <select name="document_type" class="form-control" required>
+                <option value="">Select Type</option>
+                <option value="id_proof">ID Proof</option>
+                <option value="license">License</option>
+                <option value="certificate">Certificate</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
 
-            <div class="form-group">
-                <label>Document Upload (ID / License)</label>
-                <input type="file" class="form-control" name="document">
-                <i class="icon_upload"></i>
-            </div>
+        <div class="form-group">
+            <label>Document Upload</label>
+            <input type="file" class="form-control" name="document">
+            <i class="icon_upload"></i>
+        </div>
 
-            <div class="text-center">
-                <input type="submit" value="Create Account" name="action" class="btn_1">
-            </div>
+        <div class="text-center">
+            <input type="submit" value="Create Account" name="action" class="btn_1">
         </div>
     </form>
     <!--form -->
