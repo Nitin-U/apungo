@@ -12,7 +12,7 @@ class Vendor extends BaseModel
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['user_id','image','email', 'title', 'about_me', 'experience', 'rating', 'verified', 'availability', 'agreement'
+    protected $fillable = ['user_id','image','email', 'title','location', 'about_me', 'experience', 'rating', 'verified', 'availability', 'agreement'
         ,'created_by','updated_by','deleted_at','created_at','updated_at'];
 
     // Relationships

@@ -62,10 +62,16 @@
         </div>
     </div>
 
-    <div class="col-lg-12">
+    <div class="col-lg-6">
         <div class="mb-3">
             {!! Form::label('experience', 'Experience (Years)', ['class' => 'form-label required']) !!}
             {!! Form::number('experience', null,['class'=>'form-control','placeholder'=>'Enter years of experience']) !!}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="mb-3">
+            {!! Form::label('location', 'Location', ['class' => 'form-label']) !!}
+            {!! Form::text('location', null,['class'=>'form-control','placeholder'=>'Enter location']) !!}
         </div>
     </div>
 
@@ -115,11 +121,11 @@
                             {{ Form::label('service_'.$id, $name, ['class' => 'form-check-label']) }}
                         </div>
                     </div>
-                    <div class="col-lg-4 d-flex mb-2"> 
-                        {!! Form::number('rate[]', $page_method=='edit' && $bundle['vendor_services'] && in_array($id, array_keys($bundle['vendor_services'])) ? $bundle['vendor_services'][$id]['rate']:null,['class'=>'form-control','placeholder'=>'Enter Rate', 'step'=>'0.1', 'min'=>'0']) !!}
+                    <div class="col-lg-4 d-flex mb-2">
+                        {!! Form::number('rate['.$id.']', $page_method=='edit' && $bundle['vendor_services'] && in_array($id, array_keys($bundle['vendor_services'])) ? $bundle['vendor_services'][$id]['rate']:null,['class'=>'form-control','placeholder'=>'Enter Rate', 'step'=>'0.1', 'min'=>'0']) !!}
                     </div>
-                    <div class="col-lg-6 d-flex mb-2"> 
-                        {!! Form::select('service_mode[]', $bundle['service_mode'], $page_method=='edit' && $bundle['vendor_services'] && in_array($id, array_keys($bundle['vendor_services'])) ? $bundle['vendor_services'][$id]['service_mode']: null,['class'=>'form-select mb-3 select2','id'=>'service_mode_'.$id]) !!}
+                    <div class="col-lg-6 d-flex mb-2">
+                        {!! Form::select('service_mode['.$id.']', $bundle['service_mode'], $page_method=='edit' && $bundle['vendor_services'] && in_array($id, array_keys($bundle['vendor_services'])) ? $bundle['vendor_services'][$id]['service_mode']: null,['class'=>'form-select mb-3 select2','id'=>'service_mode_'.$id]) !!}
                     </div>
                 @endforeach
             </div>

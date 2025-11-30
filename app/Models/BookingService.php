@@ -9,7 +9,7 @@ class BookingService extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['booking_id', 'vendor_id', 'service_id'];
+    protected $fillable = ['booking_id', 'service_id'];
 
     // Relationships
     public function booking()

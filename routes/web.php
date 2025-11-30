@@ -29,11 +29,13 @@ Route::any('/register', function() {
 });
 
 //blogs
-Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
-Route::get('/blog/search/', [BlogController::class, 'search'])->name('blog.search');
-Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
-Route::get('/blog/category/{slug}', [BlogController::class, 'category'])->name('blog.category');
+//Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+//Route::get('/blog/search/', [BlogController::class, 'search'])->name('blog.search');
+//Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+//Route::get('/blog/category/{slug}', [BlogController::class, 'category'])->name('blog.category');
 
 //custom register
 Route::post('/signup', [CustomSignupController::class, 'signup'])->name('signup.store');
+Route::post('/search', [HomePageController::class, 'search'])->name('search');
+Route::get('/check-vendor-availability', [HomePageController::class, 'searchVendor'])->name('search_vendor');
 

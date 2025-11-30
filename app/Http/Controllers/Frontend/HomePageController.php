@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Base\BaseController;
+use App\Traits\FrontendSearch;
 use Illuminate\Contracts\Support\Renderable;
 
 class HomePageController extends BaseController
 {
+    use FrontendSearch;
     protected string $module        = FRONTEND;
     protected string $route_name    = FRONTEND;
     protected string $resource_path = FRONTEND;
@@ -38,6 +40,14 @@ class HomePageController extends BaseController
     public function getBundle(): array
     {
         return [];
+    }
+
+    public function searchVendor()
+    {
+        $this->page_method      = 'index';
+        $this->page_title       = 'Search '.$this->page;
+        $bundle['rows'] = session('rows');
+        return view($this->loadResource($this->resource_path.'search'), compact('bundle'));
     }
 
 }

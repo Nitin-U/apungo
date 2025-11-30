@@ -1,0 +1,7 @@
+.custom-search-input-2 .service_mode{
+    display: block!important;
+}
+
+.form-control, .service_mode {
+    height: 50px!important;
+}
