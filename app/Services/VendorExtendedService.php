@@ -22,7 +22,8 @@ class VendorExtendedService
     public function getDataForDatatable(Request $request)
     {
         $query = $this->model->query()->whereHas('user', function($query) {
-                        $query->where('user_type', 'vendor');
+                        $query->where('user_type', 'vendor')
+                              ->where('status', 1);
                     })->orderBy('created_at', 'desc');
 
         return $this->dataTables->eloquent($query)

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\GeneralSetup\ServiceController;
 use App\Http\Controllers\Backend\GeneralSetup\VendorController;
+use App\Http\Controllers\Backend\GeneralSetup\VendorPendingController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,14 @@ Route::prefix('general-setup/')->name('general_setup.')->middleware(['auth'])->g
     Route::post('/service-management/trash/{id}/restore', [ServiceController::class,'restore'])->name('service_management.restore')->middleware(['isAdmin']);
     Route::delete('/service-management/trash/{id}/remove', [ServiceController::class,'removeTrash'])->name('service_management.remove-trash')->middleware(['isAdmin']);
     Route::resource('service-management', ServiceController::class)->names('service_management')->middleware(['isAdmin']);
+
+    //vendor pending related routes
+    Route::resource('vendor-pending', VendorPendingController::class)->names('vendor_pending')->middleware(['isAdmin']);
+    Route::post('/vendor-pending/status-update', [VendorPendingController::class,'statusUpdate'])->name('vendor_pending.status-update')->middleware(['isAdmin']);
+    Route::post('/vendor-pending/data', [VendorPendingController::class,'getDataForDataTable'])->name('vendor_pending.data')->middleware(['isAdmin']);
+    Route::get('/vendor-pending/trash', [VendorPendingController::class,'trash'])->name('vendor_pending.trash')->middleware(['isAdmin']);
+    Route::post('/vendor-pending/trash/{id}/restore', [VendorPendingController::class,'restore'])->name('vendor_pending.restore')->middleware(['isAdmin']);
+    Route::delete('/vendor-pending/trash/{id}/remove', [VendorPendingController::class,'removeTrash'])->name('vendor_pending.remove-trash')->middleware(['isAdmin']);
 });
 
 //user related routes

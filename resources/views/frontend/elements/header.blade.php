@@ -31,6 +31,7 @@
     <link href="{{ asset('assets/frontend/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/frontend/css/vendors.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/frontend/css/custom/custom_style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/backend/vendor/css/toastify.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- ALTERNATIVE COLORS CSS -->
     <link href="#" id="colors" rel="stylesheet">

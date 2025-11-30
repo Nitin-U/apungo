@@ -128,29 +128,31 @@
     </form>
 
     <!-- SIGN UP SECTION -->
-    <form id="sign_up" style="display:none;" action="{{ route('signup.store') }}" method="POST" enctype="multipart/form-data">
+    <!-- <form id="sign_up" style="display:none;" action="{{ route('signup.store') }}" method="POST" enctype="multipart/form-data"> -->
+    {!! Form::open(['route' => 'signup.store', 'method'=>'POST', 'class'=>'submit_form', 'id'=>'sign_up','enctype'=>'multipart/form-data', 'style'=> 'display:none']) !!}
+
         @csrf
         <div class="form-group">
             <label>Full Name</label>
-            <input type="text" class="form-control" name="name">
+            <input type="text" class="form-control" name="name" required>
             <i class="icon_profile"></i>
         </div>
 
         <div class="form-group">
             <label>Email</label>
-            <input type="email" class="form-control" name="email_signup">
+            <input type="email" class="form-control" name="email_signup" required>
             <i class="icon_mail_alt"></i>
         </div>
 
         <div class="form-group">
             <label>Password</label>
-            <input type="password" class="form-control" name="password_signup">
+            <input type="password" class="form-control" name="password_signup" required>
             <i class="icon_lock_alt"></i>
         </div>
 
         <div class="form-group">
             <label>Years of Experience</label>
-            <input type="number" min="0" class="form-control" name="experience">
+            <input type="number" min="0" class="form-control" name="experience" required>
             <i class="icon_calendar"></i>
         </div>
 
@@ -167,12 +169,19 @@
 
         <div class="form-group">
             <label>Document Upload</label>
-            <input type="file" class="form-control" name="document">
+            <input type="file" class="form-control" name="document" required>
             <i class="icon_upload"></i>
         </div>
 
+        <div class="form-group form-check mt-2">
+            <input type="checkbox" class="form-check-input" id="termsCheck" name="agreement" value="1" required>
+            <label class="form-check-label" for="termsCheck">
+                I agree with <a href="#">Terms & Conditions</a>
+            </label>
+        </div>
+
         <div class="text-center">
-            <input type="submit" value="Create Account" name="action" class="btn_1">
+            <input type="submit" value="Create Account" class="btn_1">
         </div>
     </form>
     <!--form -->
@@ -183,6 +192,8 @@
 <script src="{{ asset('assets/frontend/js/jquery-3.7.1.min.js') }}"></script>
 <script src="{{ asset('assets/frontend/js/common_scripts_min.js') }}"></script>
 <script src="{{ asset('assets/frontend/js/functions.js') }}"></script>
+<script src="{{asset('assets/base/base.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/backend/vendor/js/toastify-js.js')}}"></script>
 
 <!-- DATEPICKER  -->
 <script>
@@ -232,6 +243,9 @@
     }
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXp1EtixNDI7rdzmX5nn0TkHbT94QOPnc&amp;libraries=places&amp;callback=initMap"></script>
+
+@include($module.'includes.toast_message')
+
 @yield('js')
 @stack('scripts')
 <!-- SWITCHER  -->
