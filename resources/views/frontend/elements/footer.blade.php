@@ -128,9 +128,7 @@
     </form>
 
     <!-- SIGN UP SECTION -->
-    <!-- <form id="sign_up" style="display:none;" action="{{ route('signup.store') }}" method="POST" enctype="multipart/form-data"> -->
-    {!! Form::open(['route' => 'signup.store', 'method'=>'POST', 'class'=>'submit_form', 'id'=>'sign_up','enctype'=>'multipart/form-data', 'style'=> 'display:none']) !!}
-
+    <form id="sign_up" style="display:none;" action="{{ route($route_name.'signup.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label>Full Name</label>

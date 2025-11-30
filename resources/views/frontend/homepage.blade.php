@@ -3,6 +3,9 @@
 @section('css')
 @endsection
 @section('content')
+
+    @include($module.'elements.homepage_search')
+
     <!-- Start main -->
     <main>
         <div class="white_bg">

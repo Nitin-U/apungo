@@ -44,7 +44,7 @@
                                         <th>Experience (Yrs)</th>
                                         <th>Contact</th>
                                         <th>Availability</th>
-                                        <th>Status</th>
+                                        <th>Location</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                     </thead>
@@ -89,7 +89,7 @@
                 {data:'experience', name: 'experience', orderable: true},
                 {data:'contact', name: 'contact', orderable: true},
                 {data:'availability', name: 'availability', orderable: true},
-                {data:'status', name: 'status', searchable:false, orderable: false},
+                {data:'location', name: 'location', searchable:false, orderable: true},
                 {data:'action', name: 'action', searchable:false, orderable: false},
             ],
             drawCallback: function() {

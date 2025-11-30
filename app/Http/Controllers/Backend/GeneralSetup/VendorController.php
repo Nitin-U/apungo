@@ -62,7 +62,7 @@ class VendorController extends BaseController
             $request->request->add(['user_type' => 'vendor']);
 
             if ($request->hasFile('image_input')) {
-                $image_name = $this->uploadImage($request->file('image_input'), '400', '400');
+                $image_name = $this->uploadImage($request->file('image_input'), '800', '533');
                 $request->request->add(['image' => $image_name]);
             }
 
@@ -72,29 +72,10 @@ class VendorController extends BaseController
 
             if ($vendor) {
                 $request->request->add(['vendor_id' => $vendor->id]);
-
-                // Handle Vendor Services with pivot data (rate, service_mode)
-                $syncData = [];
-                $services = $request->input('services', []);
-                $rates    = $request->rate ?? [];
-                $service_mode    = $request->service_mode ?? [];
-                // dd($service_mode);
-
-                foreach ($services as $key=>$serviceId) {
-                    $syncData[$serviceId] = [
-                        'rate'          => $rates[$key] ?? 0,
-                        'service_mode'  => $service_mode[$key] ?? 'physical',
-                    ];
-                    // dd($syncData);
-                }
-                // dd($syncData);
-
-                if (!empty($syncData)) {
-                  $vendor->services()->sync($syncData);
-                }
+                $this->vendorExtendedService->syncVendorServices($request, $vendor);
             }
             $this->model->create($request->all());
-        
+
             Session::flash(SUCCESS, $this->page . ' was created successfully');
             DB::commit();
         } catch (\Exception $e) {
@@ -145,7 +126,7 @@ class VendorController extends BaseController
             }
 
             if ($request->hasFile('image_input')) {
-                $image_name = $this->uploadImage($request->file('image_input'), '400', '400');
+                $image_name = $this->uploadImage($request->file('image_input'), '800', '533');
                 $request->request->add(['image' => $image_name]);
             }
 
@@ -155,22 +136,7 @@ class VendorController extends BaseController
 
             if ($updated) {
                 // Handle Vendor Services with pivot data
-                $syncData = [];
-                $services = $request->input('services', []);
-                $rates    = $request->rate ?? [];
-                $service_mode    = $request->service_mode ?? [];
-
-                foreach ($services as $key=>$serviceId) {
-                    $syncData[$serviceId] = [
-                        'rate' => $rates[$key] ?? 0,
-                        'service_mode'  => $service_mode[$key] ?? 'physical',
-                    ];
-                }
-
-                if (!empty($syncData)) {
-                    $bundle['row']->services()->sync($syncData);
-                }
-
+                $this->vendorExtendedService->syncVendorServices($request,  $bundle['row']);
                 $bundle['user']->update($request->all());
             }
 

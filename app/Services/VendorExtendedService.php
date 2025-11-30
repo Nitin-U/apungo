@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Vendor;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -19,6 +20,11 @@ class VendorExtendedService
         $this->dataTables = $dataTables;
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * @throws \Exception
+     */
     public function getDataForDatatable(Request $request)
     {
         $query = $this->model->query()->whereHas('user', function($query) {
@@ -46,14 +52,6 @@ class VendorExtendedService
                 ];
                 return view($this->route_name.'includes.availability_display', compact('components'));
             })
-            ->editColumn('status', function ($item) {
-                $components = [
-                    'id'         => $item->id,
-                    'status'     => $item->availability,
-                    'route_name' => $this->route_name,
-                ];
-                return view($this->module.'includes.status', compact('components'));
-            })
             ->editColumn('action', function ($item) {
                 $components = [
                     'id'         => $item->id,
@@ -61,8 +59,32 @@ class VendorExtendedService
                 ];
                 return view($this->module.'.includes.dataTable_action', compact('components'));
             })
-            ->rawColumns(['action','status','image'])
+            ->rawColumns(['action','image'])
             ->addIndexColumn()
             ->make(true);
+    }
+
+    /**
+     * @param Request $request
+     * @param $bundle
+     * @return void
+     */
+    public function syncVendorServices(Request $request, $vendor){
+        // Handle Vendor Services with pivot data
+        $syncData = [];
+        $services = $request->input('services', []);
+        $rates    = $request->rate ?? [];
+        $service_mode    = $request->service_mode ?? [];
+
+        foreach ($services as $key=>$serviceId) {
+            $syncData[$serviceId] = [
+                'rate' => $rates[$serviceId] ?? 0,
+                'service_mode'  => $service_mode[$serviceId] ?? 'physical',
+            ];
+        }
+
+        if (!empty($syncData)) {
+            $vendor->services()->sync($syncData);
+        }
     }
 }
