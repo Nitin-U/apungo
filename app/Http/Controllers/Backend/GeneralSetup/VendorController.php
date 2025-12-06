@@ -33,9 +33,9 @@ class VendorController extends BaseController
 
     public function __construct(VendorExtendedService $vendorExtendedService)
     {
-        $this->model                 = new User();
-        $this->vendor                = new Vendor();
-        $this->vendorService         = new VendorService();
+        $this->model                 = new Vendor();
+        $this->userModel             = new User();
+        $this->vendorServiceModel    = new VendorService();
         $this->vendorExtendedService = $vendorExtendedService;
         $this->image_path   = public_path(DIRECTORY_SEPARATOR.'storage'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR);
     }
@@ -66,7 +66,7 @@ class VendorController extends BaseController
                 $request->request->add(['image' => $image_name]);
             }
 
-            $vendor = $this->vendor->create(
+            $vendor = $this->model->create(
                 $request->except('name', 'image', 'password_input', 'password_input_confirmation', 'contact', 'address', 'services')
             );
 
@@ -97,7 +97,7 @@ class VendorController extends BaseController
         $this->page_method          = EDIT;
         $this->page_title           = 'Edit '.$this->page;
         $bundle                     = $this->getBundle();
-        $bundle['row']              = $this->vendor->find($id);
+        $bundle['row']              = $this->model->find($id);
         $bundle['vendor_services']  = $bundle['row']->services()->get(['service_id', 'rate', 'service_mode'])
                                         ->mapWithKeys(function ($service) {
                                             return [
@@ -114,8 +114,8 @@ class VendorController extends BaseController
 
     public function update(VendorRequest $request, $id)
     {
-        $bundle['row'] = $this->vendor->find($id);
-        $bundle['user'] = $this->model->find($bundle['row']->user->id);
+        $bundle['row'] = $this->model->find($id);
+        $bundle['user'] = $this->model->user;
 
         DB::beginTransaction();
         try {

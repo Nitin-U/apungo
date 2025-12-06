@@ -98,19 +98,19 @@
                     <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                     <ul>
                         <li class="submenu">
-                            <a href="{{ route('home') }}" class="show-submenu">Home</a>
+                            <a href="{{ route(FRONTEND.'home') }}" class="show-submenu">Home</a>
                         </li>
                         <li class="submenu">
-                            <a href="{{ route('service') }}" class="show-submenu">Services</a>
+                            <a href="{{ route(FRONTEND.'service') }}" class="show-submenu">Services</a>
                         </li>
                         <li class="submenu">
-                            <a href="{{ route('list') }}" class="show-submenu">Pandits</a>
+                            <a href="{{ route(FRONTEND.'list') }}" class="show-submenu">Pandits</a>
                         </li>
                         <li class="submenu">
-                            <a href="{{ route('about') }}" class="show-submenu">About Us</a>
+                            <a href="{{ route(FRONTEND.'about') }}" class="show-submenu">About Us</a>
                         </li>
                         <li class="submenu">
-                            <a href="{{ route('contact') }}" class="show-submenu">Contact</a>
+                            <a href="{{ route(FRONTEND.'contact') }}" class="show-submenu">Contact</a>
                         </li>
                     </ul>
                 </div><!-- End main-menu -->

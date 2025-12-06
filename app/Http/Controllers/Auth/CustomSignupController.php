@@ -83,7 +83,7 @@ class CustomSignupController extends BaseController{
             Session::flash(ERROR,$this->page.'  was not registered. Something went wrong.');
         }
 
-        return response()->json(data: route('home'));
+        return response()->json(data: route(FRONTEND.'home'));
 
     }
 }

@@ -3,20 +3,10 @@
 @section('css')
 @endsection
 @section('content')
-
+@include($module.'elements.inner_banner',['image'=> 'parallax_bg_1.jpg'])
 	<main>
-
-		<div id="position">
-			<div class="container">
-				<ul>
-					<li><a href="#">Home</a>
-					</li>
-					<li><a href="#">Category</a>
-					</li>
-					<li>Page active</li>
-				</ul>
-			</div>
-		</div>
+		<!-- Position -->
+        @include($module.'elements.breadcrumb')
 		<!-- Position -->
 
 		<div class="collapse" id="collapseMap">

@@ -3,19 +3,10 @@
 @section('css')
 @endsection
 @section('content')
-
+@include($module.'elements.inner_banner',['image'=> 'parallax_bg_1.jpg'])
 	<main>
-		<div id="position">
-			<div class="container">
-				<ul>
-					<li><a href="#">Home</a>
-					</li>
-					<li><a href="#">Category</a>
-					</li>
-					<li>Page active</li>
-				</ul>
-			</div>
-		</div>
+		<!-- Position -->
+        @include($module.'elements.breadcrumb')
 		<!-- Position -->
 
 		<div class="collapse" id="collapseMap">
@@ -380,7 +371,7 @@
 								</div>
 								<div class="img_container">
 									<a href="single_tour.html">
-										<img src="img/tour_box_14.jpg" width="800" height="533" class="img-fluid" alt="Image">
+										<img src="img/tour_box_1.jpg" width="800" height="533" class="img-fluid" alt="Image">
 										<div class="short_info">
 											<i class="icon_set_1_icon-28"></i>Skyline tours<span class="price"><sup>$</sup>45</span>
 										</div>

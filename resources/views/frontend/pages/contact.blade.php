@@ -1,15 +1,14 @@
 @extends('frontend.layouts.master')
-@section('title') Contact Us @endsection
-
+@section('title') Home @endsection
 @section('css')
 @endsection
-
 @section('content')
-
-<main>
-
+@include($module.'elements.inner_banner',['image'=> 'parallax_bg_1.jpg'])
+	<main>
+		<!-- Position -->
+        @include($module.'elements.breadcrumb')
+		<!-- Position -->
     {{-- MAP FIXED: Showing Nepal (Kathmandu) --}}
-    <div id="map_contact" class="contact_2" style="height: 400px;"></div>
 
     <script>
         function initMap() {
@@ -51,15 +50,15 @@
     </div>
 
     {{-- Breadcrumbs FIXED --}}
-    <div id="position">
+    <!-- <div id="position">
         <div class="container">
             <ul>
-                <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('contact') }}">Contact</a></li>
+                <li><a href="{{ route(FRONTEND.'home') }}">Home</a></li>
+                <li><a href="{{ route(FRONTEND.'contact') }}">Contact</a></li>
                 <li>Contact Page</li>
             </ul>
         </div>
-    </div>
+    </div> -->
 
     <div class="container margin_60">
 

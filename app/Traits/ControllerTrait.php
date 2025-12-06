@@ -130,6 +130,7 @@ trait ControllerTrait {
      */
     public function destroy($id)
     {
+        // dd($this->model->find($id));
         try {
             DB::beginTransaction();
             $this->model->find($id)->forceDelete();
